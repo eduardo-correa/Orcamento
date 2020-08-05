@@ -19,14 +19,19 @@
 
   <table mat-table class="full-width-table" [dataSource]="ntCreditos" matSort>
 
-    <ng-container matColumnDef="cod_ug">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header matTooltip="Demandante">Demandante</th>
-      <td mat-cell *matCellDef="let row">{{row.cod_ug}}</td>
-    </ng-container>
-    
     <ng-container matColumnDef="num_nota_credito">
       <th mat-header-cell *matHeaderCellDef mat-sort-header matTooltip="Número da Nota de Crédito">Número</th>
       <td mat-cell *matCellDef="let row">{{row.num_nota_credito}}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="nome_ug">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header matTooltip="Demandante">Demandante</th>
+      <td mat-cell *matCellDef="let row">{{row.nome_ug}}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="nome_acao">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header matTooltip="Ação da JT">Ação</th>
+      <td mat-cell *matCellDef="let row">{{row.nome_acao}}</td>
     </ng-container>
 
     <ng-container matColumnDef="valor">

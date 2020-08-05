@@ -358,6 +358,7 @@ WHERE
 CREATE VIEW notaCredito_dados AS
 SELECT
   nc.id_nota_credito,
+  nc.id_descentralizacao,
   nc.num_nota_credito,
   nc.valor,
   nc.dt_nota_credito,

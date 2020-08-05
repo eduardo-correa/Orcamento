@@ -21,7 +21,8 @@ export class NotaCreditoComponent implements OnInit {
   searchKey: string;
   displayedColumns = [
     'num_nota_credito',
-    'cod_ug',
+    'nome_ug',
+    'nome_acao',
     'valor',
     'dt_nota_credito',
     'action'
