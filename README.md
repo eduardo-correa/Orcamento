@@ -1,2 +1,2 @@
-# Orcamento
+# Orçamento
 Sistema de Controle Orçamentário
