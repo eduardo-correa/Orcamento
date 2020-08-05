@@ -1,0 +1,48 @@
+<mat-card class="titulo mat-elevation-z0">
+  <div *ngIf="!arpNovoItem; then updateTitle else createTitle"></div>
+    <ng-template #updateTitle>
+      <mat-card-title class="title">
+        Editar Item
+      </mat-card-title>
+    </ng-template>
+    <ng-template #createTitle>
+      <mat-card-title class="title">
+        Novo Item
+      </mat-card-title>
+    </ng-template>
+</mat-card>
+
+<mat-card class="mat-elevation-z4">
+  <form>
+    <mat-grid-list cols="1" rowHeight="200px">
+      <mat-grid-tile>
+        <div class="controles-container">
+          <mat-form-field>
+            <input matInput placeholder="Número do Item"
+              [(ngModel)]="arpItem.num_arp_item" name="num_arp_item">
+          </mat-form-field>
+          <mat-form-field>
+            <input matInput placeholder="Item"
+              [(ngModel)]="arpItem.nome_arp_item" name="nome_arp_item">
+          </mat-form-field>
+          <mat-form-field>
+            <input matInput placeholder="Valor"
+              [(ngModel)]="arpItem.valor" name="valor">
+          </mat-form-field>
+        </div>
+      </mat-grid-tile>
+    </mat-grid-list>
+    <div class="button-row">
+      <button *ngIf="!arpNovoItem" mat-raised-button (click)="updateItem()" color="primary">
+        Atualizar
+      </button>
+      <button *ngIf="arpNovoItem" mat-raised-button (click)="createItem()" color="primary">
+        Salvar
+      </button>
+      
+      <button mat-raised-button (click)="cancel()">
+        Cancelar
+      </button>
+    </div>
+  </form>
+</mat-card>

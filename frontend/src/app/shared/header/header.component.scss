@@ -1,0 +1,26 @@
+.header {
+  display: flex;
+  align-items: center;
+}
+
+.header a {
+  display: flex;
+  text-decoration: nome;
+  align-items: center;
+}
+
+.logo {
+ max-height: 42px;
+ margin: 0px 85px 0px 35px;
+}
+
+.espaco {
+  flex: 1 1 auto;
+}
+
+.toolbar {
+  position: sticky;
+  position: -webkit-sticky;
+  top: 0;
+  z-index: 1000;
+}

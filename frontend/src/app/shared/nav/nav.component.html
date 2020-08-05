@@ -1,0 +1,53 @@
+<mat-sidenav-container class="container">
+  <mat-sidenav class="sidenav" mode="side" opened
+    fixedInViewport="true" fixedTopGap="64">
+    <mat-nav-list class="nav-list">
+      
+      <a mat-list-item routerLink="home">
+        <i class="material-icons">
+          home
+        </i>
+        Início
+      </a>
+      
+      <a mat-list-item routerLink="acao">
+        <i class="material-icons">
+          group_work
+        </i>
+        Ações
+      </a>
+
+      <a mat-list-item routerLink="arp">
+        <i class="material-icons">
+          library_books
+        </i>
+        ARP
+      </a>
+
+      <a mat-list-item routerLink="ddo">
+        <i class="material-icons">
+          layers
+        </i>
+        DDO
+      </a>
+
+      <a mat-list-item routerLink="descentralizacao">
+        <i class="material-icons">
+          open_with
+        </i>
+        Descentralização
+      </a>
+
+      <a mat-list-item routerLink="notacredito">
+        <i class="material-icons">
+          local_atm
+        </i>
+        Nota de Crédito
+      </a>
+
+    </mat-nav-list>
+  </mat-sidenav>
+  <mat-sidenav-content class="content">
+    <router-outlet></router-outlet>
+  </mat-sidenav-content>
+</mat-sidenav-container>

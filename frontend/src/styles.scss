@@ -1,0 +1,40 @@
+/* You can add global styles to this file, and also import other style files */
+
+html, body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+.azul-csjt {
+  color: #2A5683;
+}
+
+.verde-csjt {
+  color: #007B5F;
+}
+
+.v-middle {
+  vertical-align: middle;
+}
+
+.msg-sucess {
+  background-color: #DAA60A;
+  color: #FFF;
+}
+
+.msg-error {
+  background-color: #E35E6B;
+  color: #FFF;
+}
+
+.espaco {
+  flex: 1 1 auto;
+}
+
+tr.mat-row:hover {
+  background-color: #EEE;
+}

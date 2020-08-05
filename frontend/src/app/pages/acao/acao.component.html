@@ -1,0 +1,65 @@
+<mat-card class="titulo mat-elevation-z0">
+  <mat-card-title class="title">
+    Ações da Justiça do Trabalho
+  </mat-card-title>
+  <mat-card-subtitle class="subtitle">
+    Cadastro de Ações da Justiça do Trabalho
+  </mat-card-subtitle>
+</mat-card>
+
+<mat-card class="home mat-elevation-z4">
+
+  <div class="search-div">
+
+    <mat-form-field class="search-form-field">
+      <input matInput [(ngModel)]="searchKey" placeholder="Pesquisa" autocomplete="off" (keyup)="pesquisar()">
+      <button mat-button matSuffix mat-icon-button matTooltip="Limpar pesquisa" (click)="limparPesquisa()">
+        <mat-icon>close</mat-icon>
+      </button>
+    </mat-form-field>
+    <!-- <span class="espaco"></span>
+    <button matTooltip="Nova Ação da JT" mat-mini-fab color="primary" (click)="novaAcao()" class="botao" >
+      <mat-icon>add</mat-icon>
+    </button> -->
+  </div>
+  
+  <table mat-table class="full-width-table" [dataSource]="acoes" matSort>
+    
+    <ng-container matColumnDef="nome">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header matTooltip="Identificação da ação">Nome</th>
+      <td mat-cell *matCellDef="let row">{{row.nome}}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="descricao">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header matTooltip="Descrição da ação">Descrição</th>
+      <td mat-cell *matCellDef="let row">{{row.descricao}}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="action">
+      <th mat-header-cell *matHeaderCellDef >Ações</th>
+      <td mat-cell *matCellDef="let row">
+
+        <button matTooltip="Editar Ação" mat-icon-button (click)="updateAcao( row.id_acao )">
+          <mat-icon class="edit">edit</mat-icon>
+        </button>
+
+        <button matTooltip="Excluir Ação" mat-icon-button (click)="deleteAcao( row.id_acao )">
+          <mat-icon class="delete">delete</mat-icon>
+        </button>
+
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;">
+  </tr>
+  </table>
+  <mat-paginator [pageSizeOptions]="[5, 10, 15]" [pageSize]="5" showFirstLastButtons></mat-paginator>
+</mat-card>
+
+<mat-card class="mat-elevation-z0 adicionar">
+  <button matTooltip="Nova Ação da JT" mat-mini-fab color="primary" (click)="novaAcao()" class="botao" >
+    <mat-icon>add</mat-icon>
+  </button>
+</mat-card>
+

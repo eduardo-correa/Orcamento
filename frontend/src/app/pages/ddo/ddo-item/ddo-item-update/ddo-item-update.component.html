@@ -1,0 +1,60 @@
+<mat-card class="titulo mat-elevation-z0">
+  <mat-card-title class="title">
+    Editar Item
+  </mat-card-title>
+</mat-card>
+
+<mat-card class="mat-elevation-z4">
+  <form>
+    <mat-grid-list cols="2" rowHeight="300px">
+      
+      <mat-grid-tile>
+        <div class="controles-container">
+
+          <mat-form-field>
+            <input matInput placeholder="ARP" disabled
+              [(ngModel)]="identificaARP" name="identificaARP">
+          </mat-form-field>
+          <mat-form-field>
+            <input matInput placeholder="Item" disabled
+              [(ngModel)]="nomeItem" name="nomeItem">
+          </mat-form-field>
+          <mat-form-field>
+            <input matInput placeholder="Valor" disabled
+              [(ngModel)]="valorItem" name="valorItem">
+          </mat-form-field>
+          
+        </div>
+      </mat-grid-tile>
+
+      <mat-grid-tile>
+        <div class="controles-container">
+
+          <mat-form-field>
+            <input matInput placeholder="Elemento de Despesa"
+              [(ngModel)]="ddoItem.elemento_despesa" name="elemento_despesa">
+          </mat-form-field>
+
+          <mat-form-field>
+            <input matInput placeholder="Qtd. Demandada"
+              [(ngModel)]="ddoItem.qtd_demandada" name="qtd_demandada">
+          </mat-form-field>
+
+          <mat-form-field>
+            <input matInput placeholder="Qtd. Aprovada"
+              [(ngModel)]="ddoItem.qtd_aprovada" name="qtd_aprovada">
+          </mat-form-field>
+        </div>
+      </mat-grid-tile>
+    </mat-grid-list>
+    <div class="button-row">
+      <button mat-raised-button (click)="updateItem()" color="primary">
+        Atualizar
+      </button>
+      
+      <button mat-raised-button mat-dialog-close>
+        Cancelar
+      </button>
+    </div>
+  </form>
+</mat-card>

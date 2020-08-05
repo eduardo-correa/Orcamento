@@ -1,0 +1,26 @@
+<mat-toolbar class="mat-elevation-z4 toolbar">
+  <span>
+    <a target=”_blank” href="http://www.csjt.jus.br">
+      <img class="logo" src="assets/Logo_CSJT.png" alt="logo">
+    </a>
+  </span>
+  <span>
+    <strong>CGGOV</strong> - Coordenadoria de Gestão e Governança em Tecnologia da Informação
+  </span>
+  <span class="espaco"></span>
+  <span>
+    <button mat-icon-button [matMenuTriggerFor]="menu">
+      <mat-icon>account_circle</mat-icon>
+    </button>
+    <mat-menu #menu="matMenu">
+      <button mat-menu-item>
+        <mat-icon>assignment_ind</mat-icon>
+        <span>Meus dados</span>
+      </button>
+      <button mat-menu-item>
+        <mat-icon>login</mat-icon>
+        <span>Sair</span>
+      </button>
+    </mat-menu>
+  </span>
+</mat-toolbar>
