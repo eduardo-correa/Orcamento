@@ -1,0 +1,29 @@
+{
+  "name": "orcamento-backend",
+  "version": "1.0.0",
+  "description": "Back-end da aplicação de Controle Orçamentário da CGGOV",
+  "main": "src/app.js",
+  "scripts": {
+    "start": "nodemon src/app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/eduardo-correa/orcamento-backend.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/eduardo-correa/orcamento-backend/issues"
+  },
+  "homepage": "https://github.com/eduardo-correa/orcamento-backend#readme",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.17.1",
+    "knex": "^0.21.1",
+    "pg": "^8.0.3"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.3"
+  }
+}
