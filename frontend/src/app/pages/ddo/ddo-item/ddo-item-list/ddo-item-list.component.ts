@@ -1,5 +1,4 @@
 import { DdoItemUpdateComponent } from './../ddo-item-update/ddo-item-update.component';
-import { ArpItem } from './../../../arp/arp-item/arp-item.model';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { DDO } from './../../ddo.model';
 import { DdoService } from './../../ddo.service';
@@ -11,6 +10,7 @@ import { MatTableDataSource } from '@angular/material/table';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { DdoItem } from '../ddo-item.model';
 import { DdoItemFormComponent } from '../ddo-item-form/ddo-item-form.component';
+import { LicitacaoItem } from 'src/app/pages/licitacao/licitacao-item/licitacao-item.model';
 
 @Component({
   selector: 'cggov-ddo-item-list',
@@ -20,7 +20,7 @@ import { DdoItemFormComponent } from '../ddo-item-form/ddo-item-form.component';
 export class DdoItemListComponent implements OnInit {
 
   itens: MatTableDataSource<DdoItem>;
-  arpItens: ArpItem[];
+  licitacaoItens: LicitacaoItem[];
   searchKey: string;
   @ViewChild (MatSort) sort: MatSort;
   @ViewChild (MatPaginator) paginator: MatPaginator;

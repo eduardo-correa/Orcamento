@@ -14,16 +14,16 @@
 
         <!-- Seleção da ARP -->
         <mat-form-field>
-          <mat-label>Ata de Registro de Preço</mat-label>
+          <mat-label>Licitação</mat-label>
           <mat-select [(ngModel)]="ddoItem.id_arp" name="id_arp" (selectionChange)="buscaItens(ddoItem.id_arp)">
-            <mat-option *ngFor="let arp of arps" [value]="arp.id_arp">
-              {{arp.num_arp}}/{{arp.ano_arp}} - {{arp.descricao}}
+            <mat-option *ngFor="let licitacao of licitacoes" [value]="licitacao.id_licitacao">
+              {{licitacao.num_licitacao}}/{{licitacao.ano_licitacao}} - {{licitacao.descricao}}
             </mat-option>
           </mat-select>
         </mat-form-field>
 
         <!-- Tabela com os itens da ARP selecionada -->
-        <table mat-table [dataSource]="arpItens">
+        <table mat-table [dataSource]="licitacaoItens">
 
           <!-- Checkbox Column -->
           <ng-container matColumnDef="selecionados">
@@ -45,14 +45,14 @@
             </td>
           </ng-container>
 
-          <ng-container matColumnDef="num_arp_item">
+          <ng-container matColumnDef="num_licitacao_item">
             <th mat-header-cell *matHeaderCellDef>Item</th>
-            <td mat-cell *matCellDef="let row">{{row.num_arp_item}}</td>
+            <td mat-cell *matCellDef="let row">{{row.num_licitacao_item}}</td>
           </ng-container>
       
-          <ng-container matColumnDef="nome_arp_item">
+          <ng-container matColumnDef="nome_licitacao_item">
             <th mat-header-cell *matHeaderCellDef>Nome do Item</th>
-            <td mat-cell *matCellDef="let row">{{row.nome_arp_item}}</td>
+            <td mat-cell *matCellDef="let row">{{row.nome_licitacao_item}}</td>
           </ng-container>
 
           <ng-container matColumnDef="valor">

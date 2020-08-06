@@ -2,12 +2,12 @@
   <div *ngIf="data; then updateTitle else createTitle"></div>
     <ng-template #updateTitle>
       <mat-card-title class="title">
-        Editar Ata de Registro de Preço
+        Editar Licitação
       </mat-card-title>
     </ng-template>
     <ng-template #createTitle>
       <mat-card-title class="title">
-        Nova Ata de Registro de Preço
+        Nova Licitação
       </mat-card-title>
     </ng-template>
 </mat-card>
@@ -19,18 +19,18 @@
         <div class="controles-container">
           
           <mat-form-field>
-            <input matInput placeholder="Número da ARP"
-              [(ngModel)]="arp.num_arp" name="num_arp">
+            <input matInput placeholder="Número da Licitação"
+              [(ngModel)]="licitacao.num_licitacao" name="num_licitacao">
           </mat-form-field>
           
           <mat-form-field>
             <input matInput placeholder="Descrição"
-              [(ngModel)]="arp.descricao" name="descricao">
+              [(ngModel)]="licitacao.descricao" name="descricao">
           </mat-form-field>
 
           <mat-form-field>
             <mat-label>Ano</mat-label>
-            <mat-select [(ngModel)]="arp.ano_arp" name="ano_arp">
+            <mat-select [(ngModel)]="licitacao.ano_licitacao" name="ano_licitacao">
               <mat-option *ngFor="let ano of anos" [value]="ano">
                 {{ano}}
               </mat-option>
@@ -45,7 +45,7 @@
           
           <mat-form-field>
             <mat-label>Ação da JT</mat-label>
-            <mat-select [(ngModel)]="arp.id_acao" name="id_acao">
+            <mat-select [(ngModel)]="licitacao.id_acao" name="id_acao">
               <mat-option *ngFor="let acao of acoes" [value]="acao.id_acao">
                 {{acao.nome}}
               </mat-option>
@@ -54,22 +54,22 @@
 
           <mat-form-field>
             <mat-label>Unidade Gestora</mat-label>
-            <mat-select [(ngModel)]="arp.id_ug" name="id_ug">
+            <mat-select [(ngModel)]="licitacao.id_ug" name="id_ug">
               <mat-option *ngFor="let ug of ugs" [value]="ug.id_ug">
                 {{ug.cod_ug}}
               </mat-option>
             </mat-select>
           </mat-form-field>
 
-          <mat-checkbox [(ngModel)]="arp.ativa" name="ativa" color="primary">
+          <mat-checkbox [(ngModel)]="licitacao.ativa" name="ativa" color="primary">
             ARP vigente
           </mat-checkbox>
 
           <div class="button-row">
-            <button *ngIf="data" mat-raised-button (click)="updateArp()" color="primary">
+            <button *ngIf="data" mat-raised-button (click)="updateLicitacao()" color="primary">
               Atualizar
             </button>
-            <button *ngIf="!data" mat-raised-button (click)="createArp()" color="primary">
+            <button *ngIf="!data" mat-raised-button (click)="createLicitacao()" color="primary">
               Salvar
             </button>
             

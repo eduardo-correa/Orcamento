@@ -1,9 +1,9 @@
 <mat-card class="titulo mat-elevation-z0">
   <mat-card-title class="title">
-    Atas de Registro de Preço
+    Licitações da JT
   </mat-card-title>
   <mat-card-subtitle class="subtitle">
-    Cadastro de ARPs
+    Cadastro de Licitações
   </mat-card-subtitle>
 </mat-card>
 
@@ -16,16 +16,16 @@
       </button>
     </mat-form-field>
   </div>
-  <table mat-table class="full-width-table" [dataSource]="arps" matSort>
+  <table mat-table class="full-width-table" [dataSource]="licitacoes" matSort>
     
-    <ng-container matColumnDef="num_arp">
-      <th mat-header-cell *matHeaderCellDef matTooltip="Número da ARP">Número</th>
-      <td mat-cell *matCellDef="let row">{{row.num_arp}}</td>
+    <ng-container matColumnDef="num_licitacao">
+      <th mat-header-cell *matHeaderCellDef matTooltip="Número da Licitação">Número</th>
+      <td mat-cell *matCellDef="let row">{{row.num_licitacao}}</td>
     </ng-container>
 
-    <ng-container matColumnDef="ano_arp">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header matTooltip="Ano da ARP">Ano</th>
-      <td mat-cell *matCellDef="let row">{{row.ano_arp}}</td>
+    <ng-container matColumnDef="ano_licitacao">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header matTooltip="Ano da Licitação">Ano</th>
+      <td mat-cell *matCellDef="let row">{{row.ano_licitacao}}</td>
     </ng-container>
 
     <ng-container matColumnDef="nome_ug">
@@ -48,17 +48,17 @@
       <td mat-cell *matCellDef="let row">
         
         <a matTooltip="Itens da ARP"
-          routerLink="/arp/item/{{ row.id_arp }}" class="itens">
+          routerLink="/licitacao/item/{{ row.id_arp }}" class="itens">
           <i class="material-icons">
             list
           </i>
         </a>
 
-        <button matTooltip="Editar Ação" mat-icon-button (click)="updateArp( row.id_arp )">
+        <button matTooltip="Editar Ação" mat-icon-button (click)="updateLicitacao( row.id_arp )">
           <mat-icon class="edit">edit</mat-icon>
         </button>
 
-        <button matTooltip="Excluir Ação" mat-icon-button (click)="deleteArp( row.id_arp )">
+        <button matTooltip="Excluir Ação" mat-icon-button (click)="deleteLicitacao( row.id_arp )">
           <mat-icon class="delete">delete</mat-icon>
         </button>
 
@@ -72,7 +72,7 @@
 </mat-card>
 
 <mat-card class="mat-elevation-z0 adicionar">
-  <button matTooltip="Nova ARP" mat-mini-fab color="primary" (click)="novaArp()" class="botao">
+  <button matTooltip="Nova Licitação" mat-mini-fab color="primary" (click)="novaLicitacao()" class="botao">
     <mat-icon>add</mat-icon>
   </button>
 </mat-card>

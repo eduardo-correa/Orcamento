@@ -1,25 +1,26 @@
+import { Licitacao } from './../licitacao.model';
 import { AcaoService } from './../../acao/acao.service';
 import { Acao } from './../../acao/acao.model';
 import { UgService } from './../../ug/ug.service';
 import { Ug } from './../../ug/ug.model';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Component, OnInit, Inject } from '@angular/core';
-import { Arp } from '../arp.model';
 import { Router } from '@angular/router';
-import { ArpService } from '../arp.service';
+import { LicitacaoService } from '../licitacao.service';
+
 
 @Component({
-  selector: 'cggov-arp-form',
-  templateUrl: './arp-form.component.html',
-  styleUrls: ['./arp-form.component.scss']
+  selector: 'cggov-licitacao-form',
+  templateUrl: './licitacao-form.component.html',
+  styleUrls: ['./licitacao-form.component.scss']
 })
-export class ArpFormComponent implements OnInit {
+export class LicitacaoFormComponent implements OnInit {
 
-  arp: Arp = {
+  licitacao: Licitacao = {
     id_acao: null,
     id_ug: null,
-    num_arp: "",
-    ano_arp: null,
+    num_licitacao: "",
+    ano_licitacao: null,
     descricao: "",
     ativa: false,
   }
@@ -29,16 +30,16 @@ export class ArpFormComponent implements OnInit {
   anos = [];
 
   constructor(private router: Router,
-    private arpService: ArpService,
+    private licitacaoService: LicitacaoService,
     private ugService: UgService,
     private acaoService: AcaoService,
-    public dialogRef: MatDialogRef<ArpFormComponent>,
+    public dialogRef: MatDialogRef<LicitacaoFormComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any) { }
 
   ngOnInit(): void {
     if (this.data) {
-      this.arpService.readById(this.data.idARP).subscribe( retorno => {
-        this.arp = retorno[0]
+      this.licitacaoService.readById(this.data.idLicitacao).subscribe( retorno => {
+        this.licitacao = retorno[0]
       })
     }
     this.ugService.read().subscribe( retorno => {
@@ -52,16 +53,16 @@ export class ArpFormComponent implements OnInit {
     }
   }
 
-  createArp(): void {
-    this.arpService.create(this.arp).subscribe(() => {
-      this.arpService.showMessage('ARP criada.');
+  createLicitacao(): void {
+    this.licitacaoService.create(this.licitacao).subscribe(() => {
+      this.licitacaoService.showMessage('Licitação criada.');
       this.dialogRef.close();
     });
   }
 
-  updateArp(): void {
-    this.arpService.update(this.arp).subscribe(() => {
-      this.arpService.showMessage('ARP atualizada.');
+  updateLicitacao(): void {
+    this.licitacaoService.update(this.licitacao).subscribe(() => {
+      this.licitacaoService.showMessage('Licitação atualizada.');
       this.dialogRef.close();
     });
   }

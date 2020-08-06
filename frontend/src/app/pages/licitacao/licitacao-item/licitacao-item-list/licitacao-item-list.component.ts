@@ -1,39 +1,39 @@
+import { Licitacao } from './../../licitacao.model';
 import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
-import { ArpService } from './../../arp.service';
-import { ArpItem } from './../arp-item.model';
-import { ArpItemService } from './../arp-item.service';
 import { ActivatedRoute } from '@angular/router';
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { Arp } from '../../arp.model';
-import { ArpItemFormComponent } from '../arp-item-form/arp-item-form.component';
 import { MatPaginator } from '@angular/material/paginator';
+import { LicitacaoItemService } from '../licitacao-item.service';
+import { LicitacaoItem } from '../licitacao-item.model';
+import { LicitacaoService } from '../../licitacao.service';
+import { LicitacaoItemFormComponent } from '../licitacao-item-form/licitacao-item-form.component';
 
 @Component({
-  selector: 'cggov-arp-item-list',
-  templateUrl: './arp-item-list.component.html',
-  styleUrls: ['./arp-item-list.component.scss']
+  selector: 'cggov-licitacao-item-list',
+  templateUrl: './licitacao-item-list.component.html',
+  styleUrls: ['./licitacao-item-list.component.scss']
 })
-export class ArpItemListComponent implements OnInit {
+export class LicitacaoItemListComponent implements OnInit {
 
-  itens: MatTableDataSource<ArpItem>;
-  displayedColumns = ['num_arp_item', 'nome_arp_item', 'valor', 'action'];
+  itens: MatTableDataSource<LicitacaoItem>;
+  displayedColumns = ['num_licitacao_item', 'nome_licitacao_item', 'valor', 'action'];
   @ViewChild (MatSort) sort: MatSort;
   @ViewChild (MatPaginator) paginator: MatPaginator;
   searchKey: string;
-  arp: Arp = {
-    id_arp: null,
+  licitacao: Licitacao = {
+    id_licitacao: null,
     id_acao: null,
     id_ug: null,
-    num_arp: "",
-    ano_arp: null,
+    num_licitacao: "",
+    ano_licitacao: null,
     descricao: "",
   }
   
   constructor( private route: ActivatedRoute,
-    private arpItemServide: ArpItemService,
-    private arpService: ArpService,
+    private licitacaoItemServide: LicitacaoItemService,
+    private licitacaoService: LicitacaoService,
     private dialogForm: MatDialog) {
     
   }
@@ -43,14 +43,14 @@ export class ArpItemListComponent implements OnInit {
   }
 
   carregarDados(): void {
-    const id = this.route.snapshot.paramMap.get('id_arp');
-    this.arpItemServide.read(id).subscribe( retorno => {
+    const id = this.route.snapshot.paramMap.get('id_licitacao');
+    this.licitacaoItemServide.read(id).subscribe( retorno => {
       this.itens = new MatTableDataSource(retorno);
       this.itens.sort = this.sort;
       this.itens.paginator = this.paginator;
     });
-    this.arpService.readById(+id).subscribe( (arp) => {
-      this.arp = arp[0];
+    this.licitacaoService.readById(+id).subscribe( (licitacao) => {
+      this.licitacao = licitacao[0];
     })
   }
 
@@ -60,10 +60,10 @@ export class ArpItemListComponent implements OnInit {
     dialogConfig.autoFocus = true;
     dialogConfig.width = "50%";
     dialogConfig.data = {
-      idArp: this.arp.id_arp,
+      idLicitacao: this.licitacao.id_licitacao,
       idItem: null
     };
-    const dialogRef = this.dialogForm.open(ArpItemFormComponent, dialogConfig)
+    const dialogRef = this.dialogForm.open(LicitacaoItemFormComponent, dialogConfig)
     dialogRef.afterClosed().subscribe ( result => {
       this.carregarDados();
     })
@@ -75,19 +75,19 @@ export class ArpItemListComponent implements OnInit {
     dialogConfig.autoFocus = true;
     dialogConfig.width = "50%";
     dialogConfig.data = {
-      idArp: this.arp.id_arp,
+      idLicitacao: this.licitacao.id_licitacao,
       idItem: id
     };
-    const dialogRef = this.dialogForm.open(ArpItemFormComponent, dialogConfig)
+    const dialogRef = this.dialogForm.open(LicitacaoItemFormComponent, dialogConfig)
     dialogRef.afterClosed().subscribe ( result => {
       this.carregarDados();
     })
   }
 
   deleteItem (idItem: string): void {
-    if (confirm( 'Tem certeza que deseja excluir este item da ARP?' )) {
-      this.arpItemServide.delete( +idItem ).subscribe( () => {
-        this.arpItemServide.showMessage('Item da ARP excluído.');
+    if (confirm( 'Tem certeza que deseja excluir este item da Licitação?' )) {
+      this.licitacaoItemServide.delete( +idItem ).subscribe( () => {
+        this.licitacaoItemServide.showMessage('Item da Licitação excluído.');
         this.carregarDados();
       })
     }

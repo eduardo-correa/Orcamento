@@ -1,4 +1,4 @@
-import { ArpItem } from './arp-item.model';
+import { LicitacaoItem } from './licitacao-item.model';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Injectable } from '@angular/core';
 import { HttpHeaders, HttpClient, HttpParams } from '@angular/common/http';
@@ -8,9 +8,9 @@ import { map, catchError } from 'rxjs/operators';
 @Injectable({
   providedIn: 'root'
 })
-export class ArpItemService {
+export class LicitacaoItemService {
 
-  baseUrl = "http://localhost:3333/arp_item";
+  baseUrl = "http://localhost:3333/licitacao_item";
   headers = new HttpHeaders().set('Authorization', '1');
 
   constructor( private http: HttpClient,
@@ -31,43 +31,43 @@ export class ArpItemService {
     return EMPTY;
   }
 
-  read(idArp: string): Observable<ArpItem[]> {
+  read(idArp: string): Observable<LicitacaoItem[]> {
     const url = `${this.baseUrl}/${idArp}`
-    return this.http.get<ArpItem[]>( url ).pipe(
+    return this.http.get<LicitacaoItem[]>( url ).pipe(
       map(obj => obj), catchError( e => this.errorHandler(e))
     );
   }
 
-  readById(idItem: number): Observable<ArpItem> {
+  readById(idItem: number): Observable<LicitacaoItem> {
     const url = `${this.baseUrl}/item/${idItem}`
-    return this.http.get<ArpItem>(url).pipe(
+    return this.http.get<LicitacaoItem>(url).pipe(
       map(obj => obj), catchError( e => this.errorHandler(e))
     );
   }
 
-  readByArp(idArp: number): Observable<ArpItem[]> {
+  readByArp(idArp: number): Observable<LicitacaoItem[]> {
     const url = `${this.baseUrl}/itens/${idArp}`
-    return this.http.get<ArpItem>(url).pipe(
+    return this.http.get<LicitacaoItem>(url).pipe(
       map(obj => obj), catchError( e => this.errorHandler(e))
     );
   }
 
-  create(arpItem: ArpItem): Observable<ArpItem> {
-    return this.http.post<ArpItem>(this.baseUrl, arpItem, {headers: this.headers}).pipe(
+  create(licitacaoItem: LicitacaoItem): Observable<LicitacaoItem> {
+    return this.http.post<LicitacaoItem>(this.baseUrl, licitacaoItem, {headers: this.headers}).pipe(
       map(obj => obj), catchError (e => this.errorHandler(e))
     )
   }
 
-  update(itemUpdate: ArpItem): Observable<ArpItem> {
-    const url = `${this.baseUrl}/${itemUpdate.id_arp_item}`;
-    return this.http.put<ArpItem>(url, itemUpdate, {headers: this.headers}).pipe(
+  update(itemUpdate: LicitacaoItem): Observable<LicitacaoItem> {
+    const url = `${this.baseUrl}/${itemUpdate.id_licitacao_item}`;
+    return this.http.put<LicitacaoItem>(url, itemUpdate, {headers: this.headers}).pipe(
       map(obj => obj), catchError( e => this.errorHandler(e))
     );
   }
 
-  delete(idItem: number): Observable<ArpItem> {
+  delete(idItem: number): Observable<LicitacaoItem> {
     const url = `${this.baseUrl}/${idItem}`
-    return this.http.delete<ArpItem>(url).pipe(
+    return this.http.delete<LicitacaoItem>(url).pipe(
       map(obj => obj), catchError( e => this.errorHandler(e))
     );
   }

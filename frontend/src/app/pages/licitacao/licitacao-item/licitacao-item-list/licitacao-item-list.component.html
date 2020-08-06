@@ -1,9 +1,9 @@
 <mat-card class="titulo mat-elevation-z0">
   <mat-card-title class="title">
-    Itens da Ata de Registro de Preço
+    Itens da Licitação
   </mat-card-title>
   <mat-card-subtitle class="subtitle">
-    Cadastro de Itens da <strong>ARP {{ arp.num_arp }}/{{arp.ano_arp}}</strong>
+    Cadastro de Itens da <strong>Licitação {{ licitacao.num_licitacao }}/{{licitacao.ano_licitacao}}</strong>
   </mat-card-subtitle>
 </mat-card>
 
@@ -22,14 +22,14 @@
   <!-- Campos do formulário -->
   <table mat-table class="full-width-table" [dataSource]="itens" matSort>
 
-    <ng-container matColumnDef="num_arp_item">
+    <ng-container matColumnDef="num_licitaco_item">
       <th mat-header-cell *matHeaderCellDef mat-sort-header>Número do Item</th>
-      <td mat-cell *matCellDef="let row">{{row.num_arp_item}}</td>
+      <td mat-cell *matCellDef="let row">{{row.num_licitacao_item}}</td>
     </ng-container>
 
-    <ng-container matColumnDef="nome_arp_item">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header>Item da ARP</th>
-      <td mat-cell *matCellDef="let row">{{row.nome_arp_item}}</td>
+    <ng-container matColumnDef="nome_licitacao_item">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Item da Licitação</th>
+      <td mat-cell *matCellDef="let row">{{row.nome_licitacao_item}}</td>
     </ng-container>
 
     <ng-container matColumnDef="valor">
