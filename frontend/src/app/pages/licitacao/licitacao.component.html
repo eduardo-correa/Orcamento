@@ -39,7 +39,7 @@
     </ng-container>
 
     <ng-container matColumnDef="descricao">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header matTooltip="Descrição da ARP">Descrição</th>
+      <th mat-header-cell *matHeaderCellDef mat-sort-header matTooltip="Descrição da Licitação">Descrição</th>
       <td mat-cell *matCellDef="let row">{{row.descricao}}</td>
     </ng-container>
 
@@ -47,18 +47,18 @@
       <th mat-header-cell *matHeaderCellDef >Ações</th>
       <td mat-cell *matCellDef="let row">
         
-        <a matTooltip="Itens da ARP"
-          routerLink="/licitacao/item/{{ row.id_arp }}" class="itens">
+        <a matTooltip="Itens da Licitação"
+          routerLink="/licitacao/item/{{ row.id_licitacao }}" class="itens">
           <i class="material-icons">
             list
           </i>
         </a>
 
-        <button matTooltip="Editar Ação" mat-icon-button (click)="updateLicitacao( row.id_arp )">
+        <button matTooltip="Editar Licitação" mat-icon-button (click)="updateLicitacao( row.id_licitacao )">
           <mat-icon class="edit">edit</mat-icon>
         </button>
 
-        <button matTooltip="Excluir Ação" mat-icon-button (click)="deleteLicitacao( row.id_arp )">
+        <button matTooltip="Excluir Licitação" mat-icon-button (click)="deleteLicitacao( row.id_licitacao )">
           <mat-icon class="delete">delete</mat-icon>
         </button>
 

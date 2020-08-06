@@ -4,7 +4,7 @@ module.exports = {
   
   // Insert
   async create(request, response) {
-    const {id_acao, id_ug, num_licitacao, ano_licitacao, descricao, modalidade, ativa} = request.body;
+    const {id_acao, id_ug, num_licitacao, ano_licitacao, descricao, modalidade, dt_vigencia, ativa} = request.body;
     const id_usuario = request.headers.authorization;
 
     const [licitacao] = await connection('licitacao')
@@ -16,6 +16,7 @@ module.exports = {
       ano_licitacao: ano_licitacao,
       descricao: descricao,
       modalidade: modalidade,
+      dt_vigencia: dt_vigencia,
       ativa: ativa,
       id_usuario: id_usuario,
     });
@@ -51,7 +52,7 @@ module.exports = {
 
   // Update
   async update(request, response) {
-    const {id_acao, id_ug, num_licitacao, ano_licitacao, descricao, modalidade, ativa} = request.body;
+    const {id_acao, id_ug, num_licitacao, ano_licitacao, descricao, modalidade, dt_vigencia, ativa} = request.body;
     const id_usuario = request.headers.authorization;
     const { id } = request.params;
 
@@ -68,6 +69,7 @@ module.exports = {
       descricao: descricao,
       ativa: ativa,
       modalidade: modalidade,
+      dt_vigencia: dt_vigencia,
       id_usuario: id_usuario,
     });
     return response.json({ licitacao });

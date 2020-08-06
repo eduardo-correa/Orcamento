@@ -5,7 +5,6 @@ import { MatSort } from '@angular/material/sort';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { Router } from '@angular/router';
 import { LicitacaoFormComponent } from './licitacao-form/licitacao-form.component';
 
 @Component({
@@ -21,7 +20,7 @@ export class LicitacaoComponent implements OnInit {
   @ViewChild (MatPaginator) paginator: MatPaginator;
   searchKey: string;
 
-  constructor(private router: Router,
+  constructor(
     private licitacoeService: LicitacaoService,
     private dialogForm: MatDialog) {
   }

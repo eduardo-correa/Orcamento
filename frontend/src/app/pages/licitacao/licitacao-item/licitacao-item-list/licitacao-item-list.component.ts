@@ -31,8 +31,9 @@ export class LicitacaoItemListComponent implements OnInit {
     descricao: "",
   }
   
-  constructor( private route: ActivatedRoute,
-    private licitacaoItemServide: LicitacaoItemService,
+  constructor (
+    private route: ActivatedRoute,
+    private licitacaoItemService: LicitacaoItemService,
     private licitacaoService: LicitacaoService,
     private dialogForm: MatDialog) {
     
@@ -44,7 +45,7 @@ export class LicitacaoItemListComponent implements OnInit {
 
   carregarDados(): void {
     const id = this.route.snapshot.paramMap.get('id_licitacao');
-    this.licitacaoItemServide.read(id).subscribe( retorno => {
+    this.licitacaoItemService.read(id).subscribe( retorno => {
       this.itens = new MatTableDataSource(retorno);
       this.itens.sort = this.sort;
       this.itens.paginator = this.paginator;
@@ -86,8 +87,8 @@ export class LicitacaoItemListComponent implements OnInit {
 
   deleteItem (idItem: string): void {
     if (confirm( 'Tem certeza que deseja excluir este item da Licitação?' )) {
-      this.licitacaoItemServide.delete( +idItem ).subscribe( () => {
-        this.licitacaoItemServide.showMessage('Item da Licitação excluído.');
+      this.licitacaoItemService.delete( +idItem ).subscribe( () => {
+        this.licitacaoItemService.showMessage('Item da Licitação excluído.');
         this.carregarDados();
       })
     }

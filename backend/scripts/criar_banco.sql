@@ -66,6 +66,7 @@ CREATE TABLE public.licitacao (
   ano_licitacao INTEGER NOT NULL,
   descricao VARCHAR,
   modalidade VARCHAR NOT NULL,
+  dt_vigencia DATE,
   ativa BOOLEAN NOT NULL DEFAULT true,
   id_usuario INTEGER NOT NULL REFERENCES usuario(id_usuario)
 );
@@ -77,6 +78,7 @@ COMMENT ON COLUMN licitacao.num_licitacao IS 'Número oficial da Licitação';
 COMMENT ON COLUMN licitacao.ano_licitacao IS 'Ano da Licitação';
 COMMENT ON COLUMN licitacao.descricao IS 'Descrição da Licitação';
 COMMENT ON COLUMN licitacao.modalidade IS 'Modalidade da Licitação (ARP, Contrato, Dispensa, ...)';
+COMMENT ON COLUMN licitacao.dt_vigencia IS 'Data de validade da Licitação caso seja do tipo ARP';
 COMMENT ON COLUMN licitacao.ativa IS 'Se a Licitação está valida ou não';
 COMMENT ON COLUMN licitacao.id_usuario IS 'Usuário do sistema responsável pela última alteração';
 
@@ -314,7 +316,7 @@ WHERE
 
 
 
--- View para exibir os dados da ARP
+-- View para exibir os dados da Licitação
 CREATE VIEW licitacao_dados AS
 SELECT
 	licitacao.id_licitacao,
@@ -325,6 +327,7 @@ SELECT
 	licitacao.num_licitacao,
 	licitacao.ano_licitacao,
 	licitacao.descricao,
+	licitacao.dt_vigencia,
   licitacao.ativa,
 	licitacao.id_usuario
 FROM public.licitacao, public.acao, public.unidade_gestora ug
