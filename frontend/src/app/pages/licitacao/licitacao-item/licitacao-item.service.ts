@@ -31,8 +31,8 @@ export class LicitacaoItemService {
     return EMPTY;
   }
 
-  read(idArp: string): Observable<LicitacaoItem[]> {
-    const url = `${this.baseUrl}/${idArp}`
+  read(idLicitacao: string): Observable<LicitacaoItem[]> {
+    const url = `${this.baseUrl}/${idLicitacao}`
     return this.http.get<LicitacaoItem[]>( url ).pipe(
       map(obj => obj), catchError( e => this.errorHandler(e))
     );
@@ -45,8 +45,8 @@ export class LicitacaoItemService {
     );
   }
 
-  readByArp(idArp: number): Observable<LicitacaoItem[]> {
-    const url = `${this.baseUrl}/itens/${idArp}`
+  readByLicitacao(idLicitacao: number): Observable<LicitacaoItem[]> {
+    const url = `${this.baseUrl}/itens/${idLicitacao}`
     return this.http.get<LicitacaoItem>(url).pipe(
       map(obj => obj), catchError( e => this.errorHandler(e))
     );

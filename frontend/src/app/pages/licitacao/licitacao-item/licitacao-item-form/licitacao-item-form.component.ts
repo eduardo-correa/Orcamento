@@ -1,5 +1,4 @@
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { Router } from '@angular/router';
 import { Component, OnInit, Inject } from '@angular/core';
 import { LicitacaoItem } from '../licitacao-item.model';
 import { LicitacaoItemService } from '../licitacao-item.service';
@@ -21,7 +20,7 @@ export class LicitacaoItemFormComponent implements OnInit {
 
   licitacaoNovoItem: string = null;
 
-  constructor( private router: Router,
+  constructor(
     private itemService: LicitacaoItemService,
     public dialogRef: MatDialogRef<LicitacaoItemService>,
     @Inject(MAT_DIALOG_DATA) public data:any) { }

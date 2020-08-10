@@ -5,6 +5,8 @@ export interface Licitacao {
   num_licitacao: string
   ano_licitacao: number
   descricao: string
+  modalidade: string
+  dt_vigencia?: Date
   ativa?: boolean
   nome_ug?: string
   nome_acao?: string

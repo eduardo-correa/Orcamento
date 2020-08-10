@@ -29,6 +29,8 @@ export class LicitacaoItemListComponent implements OnInit {
     num_licitacao: "",
     ano_licitacao: null,
     descricao: "",
+    modalidade: "",
+    dt_vigencia: null,
   }
   
   constructor (

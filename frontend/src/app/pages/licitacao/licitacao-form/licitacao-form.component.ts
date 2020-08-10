@@ -1,3 +1,4 @@
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Licitacao } from './../licitacao.model';
 import { AcaoService } from './../../acao/acao.service';
 import { Acao } from './../../acao/acao.model';
@@ -5,7 +6,6 @@ import { UgService } from './../../ug/ug.service';
 import { Ug } from './../../ug/ug.model';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Component, OnInit, Inject } from '@angular/core';
-import { Router } from '@angular/router';
 import { LicitacaoService } from '../licitacao.service';
 
 
@@ -22,14 +22,28 @@ export class LicitacaoFormComponent implements OnInit {
     num_licitacao: "",
     ano_licitacao: null,
     descricao: "",
+    modalidade: "",
+    dt_vigencia: null,
     ativa: false,
   }
 
+  formulario: FormGroup;
+
+  temDataVigencia: boolean = false;
   ugs: Ug[] = null;
   acoes: Acao[] = null;
   anos = [];
+  modalidades: string[] = [
+    "Concorrência",
+    "Tomada de Preço",
+    "Convite",
+    "Concurso",
+    "Leilão",
+    "Pregão"
+  ]
 
-  constructor(private router: Router,
+  constructor (
+    private formBuilder: FormBuilder,
     private licitacaoService: LicitacaoService,
     private ugService: UgService,
     private acaoService: AcaoService,
@@ -37,9 +51,31 @@ export class LicitacaoFormComponent implements OnInit {
     @Inject(MAT_DIALOG_DATA) public data: any) { }
 
   ngOnInit(): void {
+    this.formulario = this.formBuilder.group({
+      id_acao: [null],
+      id_ug: [null],
+      num_licitacao: [null, Validators.required],
+      ano_licitacao: [null, Validators.required],
+      descricao: [null],
+      modalidade: [null, Validators.required],
+      dt_vigencia: [null],
+      ativa: [true],
+    })
+
     if (this.data) {
       this.licitacaoService.readById(this.data.idLicitacao).subscribe( retorno => {
         this.licitacao = retorno[0]
+        this.formulario.setValue({
+          id_acao: this.licitacao.id_acao,
+          id_ug: this.licitacao.id_ug,
+          num_licitacao: this.licitacao.num_licitacao,
+          ano_licitacao: this.licitacao.ano_licitacao,
+          descricao: this.licitacao.descricao,
+          modalidade: this.licitacao.modalidade,
+          dt_vigencia: this.licitacao.dt_vigencia,
+          ativa: this.licitacao.ativa,
+        })
+        this.alteraModalidade();
       })
     }
     this.ugService.read().subscribe( retorno => {
@@ -48,12 +84,13 @@ export class LicitacaoFormComponent implements OnInit {
     this.acaoService.read().subscribe( retorno => {
       this.acoes = retorno;
     })
-    for (let i = 2010; i < 2051; i++) {
+    for (let i = 2015; i < 2051; i++) {
       this.anos.push(i);
     }
   }
 
   createLicitacao(): void {
+    this.popularLicitacao();
     this.licitacaoService.create(this.licitacao).subscribe(() => {
       this.licitacaoService.showMessage('Licitação criada.');
       this.dialogRef.close();
@@ -61,6 +98,7 @@ export class LicitacaoFormComponent implements OnInit {
   }
 
   updateLicitacao(): void {
+    this.popularLicitacao();
     this.licitacaoService.update(this.licitacao).subscribe(() => {
       this.licitacaoService.showMessage('Licitação atualizada.');
       this.dialogRef.close();
@@ -69,6 +107,23 @@ export class LicitacaoFormComponent implements OnInit {
 
   cancel(): void {
     this.dialogRef.close();
+  }
+
+  popularLicitacao(): void {
+    this.licitacao.id_acao = this.formulario.get("id_acao").value;
+    this.licitacao.id_ug = this.formulario.get("id_ug").value;
+    this.licitacao.num_licitacao = this.formulario.get("num_licitacao").value;
+    this.licitacao.ano_licitacao = this.formulario.get("ano_licitacao").value;
+    this.licitacao.descricao = this.formulario.get("descricao").value;
+    this.licitacao.modalidade = this.formulario.get("modalidade").value;
+    this.licitacao.dt_vigencia = this.formulario.get("dt_vigencia").value;
+    this.licitacao.ativa = this.formulario.get("ativa").value;
+  }
+
+  alteraModalidade(): void {
+    if (this.formulario.get("modalidade").value === "Pregão") {
+      this.temDataVigencia = true;
+    } else this.temDataVigencia = false;
   }
 
 
