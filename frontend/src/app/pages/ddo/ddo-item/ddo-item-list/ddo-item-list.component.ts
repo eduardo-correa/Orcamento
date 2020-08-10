@@ -45,11 +45,11 @@ export class DdoItemListComponent implements OnInit {
     'nome_item',
     'valor_item',
     'qtd_demandada',
-    'qtd_aprovada',
     'action'
   ]
 
-  constructor(private route: ActivatedRoute,
+  constructor (
+    private route: ActivatedRoute,
     private ddoItemService: DdoItemService,
     private ddoService: DdoService,
     private dialogForm: MatDialog) { }

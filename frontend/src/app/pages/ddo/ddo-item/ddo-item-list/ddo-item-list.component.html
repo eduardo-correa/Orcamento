@@ -23,8 +23,8 @@
   <table mat-table class="full-width-table" [dataSource]="itens" matSort>
 
     <ng-container matColumnDef="identifica_arp">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header>ARP</th>
-      <td mat-cell *matCellDef="let row">{{row.identifica_arp}}</td>
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Licitação</th>
+      <td mat-cell *matCellDef="let row">{{row.identifica_licitacao}}</td>
     </ng-container>
 
     <ng-container matColumnDef="nome_item">
@@ -40,11 +40,6 @@
     <ng-container matColumnDef="qtd_demandada">
       <th mat-header-cell *matHeaderCellDef mat-sort-header>Qtd. Demandada</th>
       <td mat-cell *matCellDef="let row">{{row.qtd_demandada}}</td>
-    </ng-container>
-
-    <ng-container matColumnDef="qtd_aprovada">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header>Qtd. Aprovada</th>
-      <td mat-cell *matCellDef="let row">{{row.qtd_aprovada}}</td>
     </ng-container>
 
     <ng-container matColumnDef="action">

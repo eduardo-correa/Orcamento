@@ -12,10 +12,10 @@
     <mat-grid-tile>
       <div class="controles-container">
 
-        <!-- Seleção da ARP -->
+        <!-- Seleção da Licitação -->
         <mat-form-field>
           <mat-label>Licitação</mat-label>
-          <mat-select [(ngModel)]="ddoItem.id_arp" name="id_arp" (selectionChange)="buscaItens(ddoItem.id_arp)">
+          <mat-select [(ngModel)]="ddoItem.id_licitacao" name="id_licitacao" (selectionChange)="buscaItens(ddoItem.id_licitacao)">
             <mat-option *ngFor="let licitacao of licitacoes" [value]="licitacao.id_licitacao">
               {{licitacao.num_licitacao}}/{{licitacao.ano_licitacao}} - {{licitacao.descricao}}
             </mat-option>

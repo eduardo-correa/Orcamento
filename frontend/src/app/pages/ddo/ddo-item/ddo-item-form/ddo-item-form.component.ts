@@ -34,14 +34,14 @@ export class DdoItemFormComponent implements OnInit {
   ddoItem: DdoItem = {
     // id_ddo_item: null,
     id_ddo: null,
-    id_arp: null,
-    id_arp_item: null,
+    id_licitacao: null,
+    id_licitacao_item: null,
     qtd_demandada: 0,
     qtd_aprovada: 0,
     elemento_despesa: "",
     nome_item: null,
     valor_item: null,
-    identifica_arp: null,
+    identifica_licitacao: null,
   }
 
   constructor( private itemService: DdoItemService,
@@ -60,9 +60,8 @@ export class DdoItemFormComponent implements OnInit {
   createItem(): void {
     if (this.selection.selected.length != 0) {
       for (const itemNovo of this.selection.selected) {
-        // console.log(itemNovo)
-        this.ddoItem.id_arp_item = itemNovo.id_licitacao_item;
-        this.ddoItem.id_arp = itemNovo.id_licitacao;
+        this.ddoItem.id_licitacao_item = itemNovo.id_licitacao_item;
+        this.ddoItem.id_licitacao = itemNovo.id_licitacao;
         this.ddoItem.id_ddo = this.data.idDdo;
         this.itemService.create(this.ddoItem).subscribe( () => {
           this.itemService.showMessage('Item criado.');
@@ -76,7 +75,7 @@ export class DdoItemFormComponent implements OnInit {
 
 
   buscaItens(idLicitacao: number): void {
-    this.licitacaoItemService.readByArp(idLicitacao).subscribe( retorno => {
+    this.licitacaoItemService.readByLicitacao(idLicitacao).subscribe( retorno => {
       this.licitacaoItens = new MatTableDataSource( retorno );
       this.licitacaoItens.paginator = this.paginator;
     })
