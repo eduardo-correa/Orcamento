@@ -10,6 +10,8 @@ import { DdoItemListComponent } from './ddo-item/ddo-item-list/ddo-item-list.com
 import { DdoItemFormComponent } from './ddo-item/ddo-item-form/ddo-item-form.component';
 import { DragDropModule } from '@angular/cdk/drag-drop';
 import { DdoItemUpdateComponent } from './ddo-item/ddo-item-update/ddo-item-update.component';
+import { DdoItemQtdComponent } from './ddo-item/ddo-item-qtd/ddo-item-qtd.component';
+import { DdoItemSelectComponent } from './ddo-item/ddo-item-select/ddo-item-select.component';
 
 
 
@@ -20,6 +22,8 @@ import { DdoItemUpdateComponent } from './ddo-item/ddo-item-update/ddo-item-upda
     DdoItemFormComponent,
     DdoItemListComponent,
     DdoItemUpdateComponent,
+    DdoItemQtdComponent,
+    DdoItemSelectComponent,
   ],
   imports: [
     DragDropModule,

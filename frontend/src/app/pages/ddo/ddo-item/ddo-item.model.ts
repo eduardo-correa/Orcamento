@@ -4,8 +4,7 @@ export interface DdoItem {
   id_licitacao: number
   id_licitacao_item: number
   qtd_demandada: number
-  qtd_aprovada: number
-  elemento_despesa: string
+  elemento_despesa?: string
   nome_item?: string
   valor_item?: string
   identifica_licitacao?: string

@@ -51,12 +51,12 @@ INSERT INTO public.acao (nome, descricao, id_usuario) VALUES('Servidor de Aplica
 
 
 -- carga da tabela LICITACAO
-INSERT INTO public.licitacao (id_acao, id_ug, num_licitacao, ano_licitacao, descricao, modalidade, id_usuario) VALUES (1, 080002, '04', 2020, 'Licitação para aquisição de microcomputadores', 'ARP', 1);
-INSERT INTO public.licitacao (id_acao, id_ug, num_licitacao, ano_licitacao, descricao, modalidade, id_usuario) VALUES (2, 080003, '07', 2020, 'Licitação para aquisição de monitores', 'ARP', 1);
-INSERT INTO public.licitacao (id_acao, id_ug, num_licitacao, ano_licitacao, descricao, modalidade, id_usuario) VALUES (3, 080004, '08', 2020, 'Licitação para manutenção de sala cofre', 'Contrato', 2);
-INSERT INTO public.licitacao (id_acao, id_ug, num_licitacao, ano_licitacao, descricao, modalidade, id_usuario) VALUES (4, 080005, '10', 2020, 'Licitação para solução de backup', 'Concurso', 2);
-INSERT INTO public.licitacao (id_acao, id_ug, num_licitacao, ano_licitacao, descricao, modalidade, id_usuario) VALUES (5, 080006, '12', 2020, 'Licitação para manutenção da rede de dados da JT', 'Convite', 3);
-INSERT INTO public.licitacao (id_acao, id_ug, num_licitacao, ano_licitacao, descricao, modalidade, id_usuario) VALUES (6, 080007, '17', 2020, 'Licitação para aquisição de licenças do JBOSS', 'PE', 4);
+INSERT INTO public.licitacao (id_acao, id_ug, num_licitacao, ano_licitacao, descricao, procedimento, id_usuario) VALUES (1, 080002, '04', 2020, 'Licitação para aquisição de microcomputadores', 'Registro de Preço', 1);
+INSERT INTO public.licitacao (id_acao, id_ug, num_licitacao, ano_licitacao, descricao, procedimento, id_usuario) VALUES (2, 080003, '07', 2020, 'Licitação para aquisição de monitores', 'Registro de Preço', 1);
+INSERT INTO public.licitacao (id_acao, id_ug, num_licitacao, ano_licitacao, descricao, procedimento, id_usuario) VALUES (3, 080004, '08', 2020, 'Licitação para manutenção de sala cofre', 'Contrato', 2);
+INSERT INTO public.licitacao (id_acao, id_ug, num_licitacao, ano_licitacao, descricao, procedimento, id_usuario) VALUES (4, 080005, '10', 2020, 'Licitação para solução de backup', 'Contrato', 2);
+INSERT INTO public.licitacao (id_acao, id_ug, num_licitacao, ano_licitacao, descricao, procedimento, id_usuario) VALUES (5, 080006, '12', 2020, 'Licitação para manutenção da rede de dados da JT', 'Registro de Preço', 3);
+INSERT INTO public.licitacao (id_acao, id_ug, num_licitacao, ano_licitacao, descricao, procedimento, id_usuario) VALUES (6, 080007, '17', 2020, 'Licitação para aquisição de licenças do JBOSS', 'Registro de Preço', 4);
 
 
 -- carga da tabela LICITACAO_ITEM

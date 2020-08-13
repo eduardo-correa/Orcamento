@@ -12,14 +12,13 @@ export class DdoItemUpdateComponent implements OnInit {
 
   ddoItem: DdoItem = {
     id_ddo: null,
-    id_arp: null,
-    id_arp_item: null,
+    id_licitacao: null,
+    id_licitacao_item: null,
     qtd_demandada: null,
-    qtd_aprovada: null,
     elemento_despesa: null,
     nome_item: null,
     valor_item: null,
-    identifica_arp: null,
+    identifica_licitacao: null,
   }
   nomeItem: string = null;
   valorItem: string = null;

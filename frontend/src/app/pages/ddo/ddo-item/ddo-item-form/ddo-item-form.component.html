@@ -1,83 +1,43 @@
-<!-- Área do título -->
-<mat-card class="titulo mat-elevation-z0">
+<!-- <p>ddo-item-form works!</p>
+<button mat-raised-button mat-dialog-close>
+  Cancelar
+</button>
+<div>
+  <pre>
+    {{data | json}}
+  </pre>
+</div>
+ -->
+
+ <mat-card class="titulo mat-elevation-z0">
   <mat-card-title class="title">
-    Novo Item do DDO
+    Itens do DDO
   </mat-card-title>
+  <mat-card-subtitle class="subtitle">
+    Definição das Quantidades e Elementos de Despesa
+  </mat-card-subtitle>
 </mat-card>
 
-<!-- Área das informações -->
-<mat-card class="mat-elevation-z4">
+<mat-card class="home mat-elevation-z4">
+  <table mat-table class="full-width-table" [dataSource]="data.itens" matSort>
 
-  <mat-grid-list cols="1" [rowHeight]="alturaDialog">
-    <mat-grid-tile>
-      <div class="controles-container">
+    <ng-container matColumnDef="nome_licitacao_item">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Nome do Item</th>
+      <td mat-cell *matCellDef="let row">{{row.nome_licitacao_item}}</td>
+    </ng-container>
 
-        <!-- Seleção da Licitação -->
-        <mat-form-field>
-          <mat-label>Licitação</mat-label>
-          <mat-select [(ngModel)]="ddoItem.id_licitacao" name="id_licitacao" (selectionChange)="buscaItens(ddoItem.id_licitacao)">
-            <mat-option *ngFor="let licitacao of licitacoes" [value]="licitacao.id_licitacao">
-              {{licitacao.num_licitacao}}/{{licitacao.ano_licitacao}} - {{licitacao.descricao}}
-            </mat-option>
-          </mat-select>
-        </mat-form-field>
-
-        <!-- Tabela com os itens da ARP selecionada -->
-        <table mat-table [dataSource]="licitacaoItens">
-
-          <!-- Checkbox Column -->
-          <ng-container matColumnDef="selecionados">
-            <th mat-header-cell *matHeaderCellDef>
-              <mat-checkbox (change)="$event ? masterToggle() : null"
-                            [checked]="selection.hasValue() && isAllSelected()"
-                            [indeterminate]="selection.hasValue() && !isAllSelected()"
-                            color="primary"
-                            [aria-label]="checkboxLabel()">
-              </mat-checkbox>
-            </th>
-            <td mat-cell *matCellDef="let row">
-              <mat-checkbox (click)="$event.stopPropagation()"
-                            (change)="$event ? selection.toggle(row) : null"
-                            [checked]="selection.isSelected(row)"
-                            color="primary"
-                            [aria-label]="checkboxLabel(row)">
-              </mat-checkbox>
-            </td>
-          </ng-container>
-
-          <ng-container matColumnDef="num_licitacao_item">
-            <th mat-header-cell *matHeaderCellDef>Item</th>
-            <td mat-cell *matCellDef="let row">{{row.num_licitacao_item}}</td>
-          </ng-container>
-      
-          <ng-container matColumnDef="nome_licitacao_item">
-            <th mat-header-cell *matHeaderCellDef>Nome do Item</th>
-            <td mat-cell *matCellDef="let row">{{row.nome_licitacao_item}}</td>
-          </ng-container>
-
-          <ng-container matColumnDef="valor">
-            <th mat-header-cell *matHeaderCellDef>Valor</th>
-            <td mat-cell *matCellDef="let row">{{row.valor | currency: 'BRL'}}</td>
-          </ng-container>
-
-          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-          <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-        </table>
-        <mat-paginator [pageSize]="5"></mat-paginator>
-        
-      </div>
-    </mat-grid-tile>
-  </mat-grid-list>
-
-  <!-- Botões de salvar e cancelar -->
-  <div class="button-row">
-    <button mat-raised-button (click)="createItem()" color="primary" [disabled]="isDisabled">
-      Adicionar
-    </button>
-    <button mat-raised-button mat-dialog-close>
-      Cancelar
-    </button>
-  </div>
+    <ng-container matColumnDef="valor_item">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Valor do Item</th>
+      <td mat-cell *matCellDef="let row">{{row.valor_item | currency: 'BRL'}}</td>
+    </ng-container>
   
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+
+  </table>
+  <mat-paginator [pageSizeOptions]="[5, 10, 15]" [pageSize]="5" showFirstLastButtons></mat-paginator>
 </mat-card>
 
+<button mat-raised-button mat-dialog-close>
+  Cancelar
+</button>

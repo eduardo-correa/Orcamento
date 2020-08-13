@@ -1,3 +1,4 @@
+//import { DdoItemQtdComponent } from './../ddo-item-qtd/ddo-item-qtd.component';
 import { DdoItemUpdateComponent } from './../ddo-item-update/ddo-item-update.component';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { DDO } from './../../ddo.model';
@@ -11,6 +12,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { DdoItem } from '../ddo-item.model';
 import { DdoItemFormComponent } from '../ddo-item-form/ddo-item-form.component';
 import { LicitacaoItem } from 'src/app/pages/licitacao/licitacao-item/licitacao-item.model';
+import { DdoItemSelectComponent } from '../ddo-item-select/ddo-item-select.component';
 
 @Component({
   selector: 'cggov-ddo-item-list',
@@ -78,9 +80,29 @@ export class DdoItemListComponent implements OnInit {
     dialogConfig.data = {
       idDdo: this.ddo.id_ddo,
     };
+    const dialogRef = this.dialogForm.open(DdoItemSelectComponent, dialogConfig)
+    dialogRef.afterClosed().subscribe ( retorno => {
+      if (retorno) {
+        this.completaDados(retorno);
+      }
+    })
+  }
+
+  completaDados(dados: any): void {
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.disableClose = true;
+    dialogConfig.autoFocus = true;
+    dialogConfig.width = "50%";
+    // dialogConfig.data = dados;
+    dialogConfig.data = {
+      itens: dados,
+      idDDO: this.ddo.id_ddo
+    }
+    
     const dialogRef = this.dialogForm.open(DdoItemFormComponent, dialogConfig)
     dialogRef.afterClosed().subscribe ( retorno => {
-      this.carregarDados();
+      //this.carregarDados();
+      console.log("Dados completos inseridos...");
     })
   }
 
