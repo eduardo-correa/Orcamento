@@ -38,10 +38,10 @@
           </mat-form-field>
 
           <mat-form-field>
-            <mat-label>Modalidade</mat-label>
-            <mat-select formControlName="modalidade" (selectionChange)="alteraModalidade()">
-              <mat-option *ngFor="let modal of modalidades" [value]="modal">
-                {{modal}}
+            <mat-label>Procedimento</mat-label>
+            <mat-select formControlName="procedimento" (selectionChange)="alteraProcedimento()">
+              <mat-option *ngFor="let proced of procedimentos" [value]="proced">
+                {{proced}}
               </mat-option>
             </mat-select>
           </mat-form-field>

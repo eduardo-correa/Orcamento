@@ -29,7 +29,7 @@ export class LicitacaoItemListComponent implements OnInit {
     num_licitacao: "",
     ano_licitacao: null,
     descricao: "",
-    modalidade: "",
+    procedimento: "",
     dt_vigencia: null,
   }
   

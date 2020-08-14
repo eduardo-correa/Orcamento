@@ -1,3 +1,4 @@
+import { MatTableDataSource } from '@angular/material/table';
 import { DdoItem } from './../ddo-item.model';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Component, OnInit, Inject } from '@angular/core';
@@ -19,6 +20,8 @@ export class DdoItemFormComponent implements OnInit {
     elemento_despesa: "",
     id_usuario: 0
   };
+
+  // itens: MatTableDataSource<this.data.itens>;
 
   displayedColumns = [
     'nome_licitacao_item',

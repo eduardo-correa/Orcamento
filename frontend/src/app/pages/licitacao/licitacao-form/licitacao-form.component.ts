@@ -22,7 +22,7 @@ export class LicitacaoFormComponent implements OnInit {
     num_licitacao: "",
     ano_licitacao: null,
     descricao: "",
-    modalidade: "",
+    procedimento: "",
     dt_vigencia: null,
     ativa: false,
   }
@@ -33,13 +33,9 @@ export class LicitacaoFormComponent implements OnInit {
   ugs: Ug[] = null;
   acoes: Acao[] = null;
   anos = [];
-  modalidades: string[] = [
-    "Concorrência",
-    "Tomada de Preço",
-    "Convite",
-    "Concurso",
-    "Leilão",
-    "Pregão"
+  procedimentos: string[] = [
+    "Contrato",
+    "Registro de Preço"
   ]
 
   constructor (
@@ -57,7 +53,7 @@ export class LicitacaoFormComponent implements OnInit {
       num_licitacao: [null, Validators.required],
       ano_licitacao: [null, Validators.required],
       descricao: [null],
-      modalidade: [null, Validators.required],
+      procedimento: [null, Validators.required],
       dt_vigencia: [null],
       ativa: [true],
     })
@@ -71,11 +67,11 @@ export class LicitacaoFormComponent implements OnInit {
           num_licitacao: this.licitacao.num_licitacao,
           ano_licitacao: this.licitacao.ano_licitacao,
           descricao: this.licitacao.descricao,
-          modalidade: this.licitacao.modalidade,
+          procedimento: this.licitacao.procedimento,
           dt_vigencia: this.licitacao.dt_vigencia,
           ativa: this.licitacao.ativa,
         })
-        this.alteraModalidade();
+        this.alteraProcedimento();
       })
     }
     this.ugService.read().subscribe( retorno => {
@@ -115,13 +111,13 @@ export class LicitacaoFormComponent implements OnInit {
     this.licitacao.num_licitacao = this.formulario.get("num_licitacao").value;
     this.licitacao.ano_licitacao = this.formulario.get("ano_licitacao").value;
     this.licitacao.descricao = this.formulario.get("descricao").value;
-    this.licitacao.modalidade = this.formulario.get("modalidade").value;
+    this.licitacao.procedimento = this.formulario.get("procedimento").value;
     this.licitacao.dt_vigencia = this.formulario.get("dt_vigencia").value;
     this.licitacao.ativa = this.formulario.get("ativa").value;
   }
 
-  alteraModalidade(): void {
-    if (this.formulario.get("modalidade").value === "Pregão") {
+  alteraProcedimento(): void {
+    if (this.formulario.get("procedimento").value === "Registro de Preço") {
       this.temDataVigencia = true;
     } else this.temDataVigencia = false;
   }
