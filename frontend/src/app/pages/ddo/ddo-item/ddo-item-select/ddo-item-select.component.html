@@ -15,14 +15,14 @@
         <!-- Seleção da Licitação -->
         <mat-form-field>
           <mat-label>Licitação</mat-label>
-          <mat-select [(ngModel)]="ddoItem.id_licitacao" name="id_licitacao" (selectionChange)="buscaItens(ddoItem.id_licitacao)">
+          <mat-select (selectionChange)="buscaItens($event.value)">
             <mat-option *ngFor="let licitacao of licitacoes" [value]="licitacao.id_licitacao">
               {{licitacao.num_licitacao}}/{{licitacao.ano_licitacao}} - {{licitacao.descricao}}
             </mat-option>
           </mat-select>
         </mat-form-field>
 
-        <!-- Tabela com os itens da ARP selecionada -->
+        <!-- Tabela com os itens da Licitação selecionada -->
         <table mat-table [dataSource]="licitacaoItens">
 
           <!-- Checkbox Column -->
@@ -69,9 +69,9 @@
     </mat-grid-tile>
   </mat-grid-list>
 
-  <!-- Botões de salvar e cancelar -->
+  <!-- Botões de adicionar e cancelar -->
   <div class="button-row">
-    <button mat-raised-button (click)="createItem()" color="primary" [disabled]="isDisabled">
+    <button mat-raised-button (click)="addItem()" color="primary" [disabled]="isDisabled">
       Adicionar
     </button>
     <button mat-raised-button mat-dialog-close>

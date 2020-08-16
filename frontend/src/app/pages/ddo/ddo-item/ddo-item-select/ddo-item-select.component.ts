@@ -4,8 +4,6 @@ import { LicitacaoItem } from './../../../licitacao/licitacao-item/licitacao-ite
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { DdoItemService } from './../ddo-item.service';
-import { DdoItem } from './../ddo-item.model';
 import { SelectionModel } from '@angular/cdk/collections';
 import { LicitacaoService } from 'src/app/pages/licitacao/licitacao.service';
 import { LicitacaoItemService } from 'src/app/pages/licitacao/licitacao-item/licitacao-item.service';
@@ -22,7 +20,11 @@ export class DdoItemSelectComponent implements OnInit {
   alturaDialog: string = "200px";
   isDisabled: boolean = true;
   selection = new SelectionModel<LicitacaoItem>(true, []);
+  
+  //para preencher o select
   licitacoes: Licitacao[] = null;
+
+  //itens da licitação que foram selecionados
   licitacaoItens: MatTableDataSource<LicitacaoItem>;
 
   displayedColumns = [
@@ -33,19 +35,6 @@ export class DdoItemSelectComponent implements OnInit {
   ]
 
   @ViewChild (MatPaginator) paginator: MatPaginator;
-
-  ddoItem: DdoItem = {
-    id_ddo: null,
-    id_licitacao: null,
-    id_licitacao_item: null,
-    qtd_demandada: 0,
-    elemento_despesa: "",
-    nome_item: null,
-    valor_item: null,
-    identifica_licitacao: null,
-    id_usuario: 1
-  }
-  itens: Array<DdoItem> = [];
 
   constructor(
     private licitacaoService: LicitacaoService,
@@ -60,22 +49,9 @@ export class DdoItemSelectComponent implements OnInit {
     })
   }
 
-  createItem(): void {
-    if (this.selection.selected.length != 0) {
-      // for (let itemNovo of this.selection.selected) {
-      //   this.ddoItem.id_licitacao_item = itemNovo.id_licitacao_item;
-      //   this.ddoItem.id_licitacao = itemNovo.id_licitacao;
-      //   this.ddoItem.nome_item = itemNovo.nome_licitacao_item;
-      //   this.ddoItem.id_ddo = this.data.idDdo;
-      //   console.log("DDO Item ======= ")
-      //   console.log(this.ddoItem);
-      //   console.log("================");
-      //   this.itens.push(this.ddoItem);
 
-        // this.itemService.create(this.ddoItem).subscribe( () => {
-        //   this.itemService.showMessage('Item criado.');
-        // });
-      // }
+  addItem(): void {
+    if (this.selection.selected.length != 0) {
       this.dialogRef.close(this.selection.selected);
     } else {
       this.dialogRef.close();

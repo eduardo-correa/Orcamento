@@ -21,11 +21,13 @@ export class DdoItemFormComponent implements OnInit {
     id_usuario: 0
   };
 
-  // itens: MatTableDataSource<this.data.itens>;
+  itens: MatTableDataSource<any>;
 
   displayedColumns = [
     'nome_licitacao_item',
-    'valor'
+    'valor',
+    'qtd_demandada',
+    'elemento_despesa'
   ]
 
   constructor(
@@ -34,22 +36,15 @@ export class DdoItemFormComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    console.log(this.data)
+    this.itens = this.data.itens;
+  }
 
-    for (let itemNovo of this.data.itens) {
-      console.log(itemNovo)
-    }
-
-    // for (let  i = 0; i < this.data.itens.length; i++) {
-    //   // console.log(this.data.itens[i]);
-    //   this.item.id_ddo = this.data.idDDO;
-    //   this.item.id_licitacao = this.data.itens[i].id_licitacao;
-    //   this.item.id_licitacao_item = this.data.itens[i].id_licitacao_item;
-    //   this.item.qtd_demandada = 0;
-    //   this.item.elemento_despesa = "";
-    //   this.item.id_usuario = this.data.itens[i].id_usuario;
-    //   this.ddoItens.push(this.item);
-    //   console.log(this.ddoItens[i]);
-    // } 
+  converteItem( itemEnviado: any ): DdoItem {
+    let meuItem : DdoItem;
+    meuItem.id_ddo = this.data.idDDO;
+    meuItem.id_licitacao = itemEnviado.id_licitacao;
+    meuItem.id_licitacao_item = itemEnviado.id_licitacao_item;
+    meuItem.id_usuario = itemEnviado.id_usuario;
+    return(meuItem);
   }
 }
