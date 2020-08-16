@@ -6,7 +6,7 @@ export interface DdoItem {
   qtd_demandada: number
   elemento_despesa?: string
   nome_item?: string
-  valor_item?: string
+  valor_item?: number
   identifica_licitacao?: string
   id_usuario?: number
 }
