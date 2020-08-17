@@ -101,8 +101,7 @@ export class DdoItemListComponent implements OnInit {
     
     const dialogRef = this.dialogForm.open(DdoItemFormComponent, dialogConfig)
     dialogRef.afterClosed().subscribe ( retorno => {
-      //this.carregarDados();
-      console.log("Dados completos inseridos...");
+      this.carregarDados();
     })
   }
 

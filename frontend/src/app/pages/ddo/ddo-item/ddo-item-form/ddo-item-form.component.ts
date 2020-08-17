@@ -1,3 +1,4 @@
+import { DdoItemService } from './../ddo-item.service';
 import { map } from 'rxjs/operators';
 import { MatTableDataSource } from '@angular/material/table';
 import { DdoItem } from './../ddo-item.model';
@@ -33,29 +34,37 @@ export class DdoItemFormComponent implements OnInit {
   ]
 
   constructor(
+    private itemService: DdoItemService,
     private dialogRef: MatDialogRef<DdoItemFormComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any
   ) { }
 
   ngOnInit(): void {
     this.itens = this.data.itens;
-    // this.ddoItens = this.data.itens.map((elemento) => {
-    //   return {
-    //     id_licitacao: elemento.id_licitacao,
-    //     id_licitacao_item: elemento.id_licitacao_item,
-    //     nome_item: elemento.valor,
-    //     valor_item: elemento.nome_licitacao_item,
-    //     id_usuario: elemento.id_usuario,
-    //     qtd_demandada: 0,
-    //     elemento_despesa: ""
-    //   }
-    // })
-    // console.log(this.ddoItens)
   }
 
-  completarDados(): void {
-    console.log(this.itens);
-    this.dialogRef.close();
+  adicionarDados(): void {
+    this.ddoItens = this.data.itens.map((elemento) => {
+      return {
+        id_licitacao: elemento.id_licitacao,
+        id_licitacao_item: elemento.id_licitacao_item,
+        nome_item: elemento.nome_licitacao_item,
+        valor_item: elemento.valor,
+        id_usuario: elemento.id_usuario,
+        qtd_demandada: +elemento.qtd_demandada,
+        elemento_despesa: elemento.elemento_despesa
+      }
+    })
+    this.ddoItens.forEach( item => {
+      item.id_ddo = this.data.idDDO
+      this.itemService.create(item).subscribe( () => {
+        this.itemService.showMessage('Itens inseridos no DDO');
+        this.dialogRef.close();
+      })
+    })
+    // console.log(this.itens);
+    // console.log(this.ddoItens);
+    // this.dialogRef.close();
   }
 
 }
