@@ -1,5 +1,5 @@
 DROP TABLE IF EXISTS public.nota_credito CASCADE;
-DROP TABLE IF EXISTS public.ug_descentralizacao CASCADE;
+DROP TABLE IF EXISTS public.proc_descentralizacao CASCADE;
 DROP TABLE IF EXISTS public.descentralizacao CASCADE;
 DROP TABLE IF EXISTS public.ddo_item CASCADE;
 DROP TABLE IF EXISTS public.ddo CASCADE;

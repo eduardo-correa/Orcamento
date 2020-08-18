@@ -169,29 +169,32 @@ COMMENT ON COLUMN descentralizacao.id_descentralizacao IS 'Identificação da de
 COMMENT ON COLUMN descentralizacao.id_ddo IS 'Identificação do ddo a qual a descentralização faz referência';
 COMMENT ON COLUMN descentralizacao.vlr_total_aprovado IS 'Valor aprovado da demanda';
 COMMENT ON COLUMN descentralizacao.num_processo IS 'Identificação do Processo Administrativo que trata a descentralização';
-COMMENT ON COLUMN descentralizacao.ord_descentralizacao IS 'Quando existe mais de uma descentralização por PAE.';
+COMMENT ON COLUMN descentralizacao.ord_descentralizacao IS 'Quando existe mais de uma descentralização por PAE, este campo define a ordem das descentralizações';
 COMMENT ON COLUMN descentralizacao.id_usuario IS 'Usuário do sistema responsável pela última alteração';
 
 
--- public.ug_descentralizacao definition
-CREATE TABLE public.ug_descentralizacao (
-  id_ug_descentralizacao SERIAL NOT NULL PRIMARY KEY,
+-- public.proc_descentralizacao definition
+CREATE TABLE public.proc_descentralizacao (
+  id_proc_descentralizacao SERIAL NOT NULL PRIMARY KEY,
   id_ug INTEGER NOT NULL REFERENCES unidade_gestora(id_ug) ON DELETE CASCADE,
   id_descentralizacao INTEGER NOT NULL REFERENCES descentralizacao(id_descentralizacao) ON DELETE CASCADE,
   id_ddo INTEGER NOT NULL REFERENCES ddo(id_ddo) ON DELETE CASCADE,
   qtd_aprovada INTEGER NOT NULL,
   vlr_aprovado DECIMAL(12,2) NOT NULL,
-  dt_descentralizacao DATE NOT NULL,
+  reuniao_cgtic VARCHAR NULL,
+  dt_aprov_cgtic DATE NULL,
   id_usuario INTEGER NOT NULL REFERENCES usuario(id_usuario)
 );
-COMMENT ON TABLE ug_descentralizacao IS 'Tabela de informações das descentralizações por UG';
-COMMENT ON COLUMN ug_descentralizacao.id_ug_descentralizacao IS 'Identificação da descentralização por UG, criada automaticamente';
-COMMENT ON COLUMN ug_descentralizacao.id_ug IS 'Identificação da UG a qual a descentralização faz referência';
-COMMENT ON COLUMN ug_descentralizacao.id_descentralizacao IS 'Identificação da Descentralização referenciada.';
-COMMENT ON COLUMN ug_descentralizacao.id_ddo IS 'Identificação do DDO a qual a descentralização faz referência';
-COMMENT ON COLUMN ug_descentralizacao.qtd_aprovada IS 'Quantidade aprovada para esta descentralização';
-COMMENT ON COLUMN ug_descentralizacao.vlr_aprovado IS 'Valor aprovado para esta descentralização';
-COMMENT ON COLUMN ug_descentralizacao.id_usuario IS 'Usuário do sistema responsável pela última alteração';
+COMMENT ON TABLE proc_descentralizacao IS 'Tabela de informações das descentralizações por UG';
+COMMENT ON COLUMN proc_descentralizacao.id_proc_descentralizacao IS 'Identificação da descentralização dentro de um PAE, criada automaticamente';
+COMMENT ON COLUMN proc_descentralizacao.id_ug IS 'Identificação da UG a qual a descentralização faz referência';
+COMMENT ON COLUMN proc_descentralizacao.id_descentralizacao IS 'Identificação da Descentralização referenciada dentro do PAE.';
+COMMENT ON COLUMN proc_descentralizacao.id_ddo IS 'Identificação do DDO a qual a descentralização faz referência';
+COMMENT ON COLUMN proc_descentralizacao.qtd_aprovada IS 'Quantidade aprovada para esta descentralização';
+COMMENT ON COLUMN proc_descentralizacao.vlr_aprovado IS 'Valor aprovado para esta descentralização';
+COMMENT ON COLUMN proc_descentralizacao.reuniao_cgtic IS 'Identificação da reunião do CGTIC onde foi aprovada a descentralização';
+COMMENT ON COLUMN proc_descentralizacao.dt_aprov_cgtic IS 'Data da reunião do CGTIC onde foi aprovada a descentralização';
+COMMENT ON COLUMN proc_descentralizacao.id_usuario IS 'Usuário do sistema responsável pela última alteração';
 
 
 
@@ -345,17 +348,21 @@ SELECT
   d.vlr_total_aprovado,
   d.num_processo,
   d.ord_descentralizacao,
-  ug.nome AS nome_ug,
-  acao.nome AS nome_acao
+  ug.cod_ug AS nome_ug,
+  acao.nome AS nome_acao,
+  proc.reuniao_cgtic,
+  proc.dt_aprov_cgtic
 FROM
   public.descentralizacao d,
   public.ddo,
   public.unidade_gestora ug,
-  public.acao
+  public.acao,
+  public.proc_descentralizacao proc
 WHERE
   d.id_ddo = ddo.id_ddo AND
   ddo.id_ug = ug.id_ug AND
-  ddo.id_acao = acao.id_acao;
+  ddo.id_acao = acao.id_acao AND
+  d.id_descentralizacao = proc.id_descentralizacao;
 
 
 -- View para exibir os dados da Nota de Crédito

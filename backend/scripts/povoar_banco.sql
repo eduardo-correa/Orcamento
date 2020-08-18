@@ -163,17 +163,27 @@ INSERT INTO public.descentralizacao (id_ddo, vlr_total_aprovado, num_processo, o
 VALUES (5, 7500, '504.257/2020-1', 1, 4);
 
 
--- carga da tabela UG_DESCENTRALIZACAO
-INSERT INTO public.ug_descentralizacao (id_ug, id_descentralizacao, id_ddo, qtd_aprovada, vlr_aprovado, dt_descentralizacao, id_usuario)
-VALUES (080001, 1, 1, 100, 25000, CURRENT_DATE, 1);
-INSERT INTO public.ug_descentralizacao (id_ug, id_descentralizacao, id_ddo, qtd_aprovada, vlr_aprovado, dt_descentralizacao, id_usuario)
-VALUES (080017, 2, 2, 200, 14000, CURRENT_DATE, 1);
-INSERT INTO public.ug_descentralizacao (id_ug, id_descentralizacao, id_ddo, qtd_aprovada, vlr_aprovado, dt_descentralizacao, id_usuario)
-VALUES (080009, 3, 3, 300, 5000, CURRENT_DATE, 2);
-INSERT INTO public.ug_descentralizacao (id_ug, id_descentralizacao, id_ddo, qtd_aprovada, vlr_aprovado, dt_descentralizacao, id_usuario)
-VALUES (080010, 4, 4, 400, 2000, CURRENT_DATE, 3);
-INSERT INTO public.ug_descentralizacao (id_ug, id_descentralizacao, id_ddo, qtd_aprovada, vlr_aprovado, dt_descentralizacao, id_usuario)
-VALUES (080008, 5, 5, 500, 7000, CURRENT_DATE, 4);
+-- carga da tabela PROC_DESCENTRALIZACAO
+INSERT INTO public.proc_descentralizacao
+  (id_ug, id_descentralizacao, id_ddo, qtd_aprovada, vlr_aprovado, reuniao_cgtic, dt_aprov_cgtic, id_usuario)
+VALUES
+  (080001, 1, 1, 100, 25000, '1ª Reunião do CGGTIC', CURRENT_DATE, 1);
+INSERT INTO public.proc_descentralizacao
+  (id_ug, id_descentralizacao, id_ddo, qtd_aprovada, vlr_aprovado, reuniao_cgtic, dt_aprov_cgtic, id_usuario)
+VALUES
+  (080017, 2, 2, 200, 14000, '1ª Reunião do CGGTIC', CURRENT_DATE, 1);
+INSERT INTO public.proc_descentralizacao
+  (id_ug, id_descentralizacao, id_ddo, qtd_aprovada, vlr_aprovado, reuniao_cgtic, dt_aprov_cgtic, id_usuario)
+VALUES
+  (080009, 3, 3, 300, 5000, '2ª Reunião do CGGTIC', CURRENT_DATE, 2);
+INSERT INTO public.proc_descentralizacao
+  (id_ug, id_descentralizacao, id_ddo, qtd_aprovada, vlr_aprovado, reuniao_cgtic, dt_aprov_cgtic, id_usuario)
+VALUES
+  (080010, 4, 4, 400, 2000, '3ª Reunião do CGGTIC', CURRENT_DATE, 3);
+INSERT INTO public.proc_descentralizacao
+  (id_ug, id_descentralizacao, id_ddo, qtd_aprovada, vlr_aprovado, reuniao_cgtic, dt_aprov_cgtic, id_usuario)
+VALUES
+  (080008, 5, 5, 500, 7000, '4ª Reunião do CGGTIC', CURRENT_DATE, 4);
 
 
 

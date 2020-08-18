@@ -1,47 +1,47 @@
-import { MatPaginator } from '@angular/material/paginator';
-import { MatSort } from '@angular/material/sort';
-import { MatTableDataSource } from '@angular/material/table';
-import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
-import { DescentService } from './descent.service';
-import { Router } from '@angular/router';
-import { Descent } from './descent.model';
-import { Component, OnInit, ViewChild } from '@angular/core';
-import { DescentFormComponent } from './descent-form/descent-form.component';
+import { MatPaginator } from "@angular/material/paginator";
+import { MatSort } from "@angular/material/sort";
+import { MatTableDataSource } from "@angular/material/table";
+import { MatDialog, MatDialogConfig } from "@angular/material/dialog";
+import { DescentService } from "./descent.service";
+import { Router } from "@angular/router";
+import { Descent } from "./descent.model";
+import { Component, OnInit, ViewChild } from "@angular/core";
+import { DescentFormComponent } from "./descent-form/descent-form.component";
 
 @Component({
-  selector: 'cggov-descent',
-  templateUrl: './descent.component.html',
-  styleUrls: ['./descent.component.scss']
+  selector: "cggov-descent",
+  templateUrl: "./descent.component.html",
+  styleUrls: ["./descent.component.scss"],
 })
 export class DescentComponent implements OnInit {
-
   descents: MatTableDataSource<Descent>;
-  @ViewChild (MatSort) sort: MatSort;
-  @ViewChild (MatPaginator) paginator: MatPaginator;
+  @ViewChild(MatSort) sort: MatSort;
+  @ViewChild(MatPaginator) paginator: MatPaginator;
   searchKey: string;
   displayedColumns = [
-    'nome_ug',
-    'vlr_total_aprovado',
-    'num_processo',
-    'reuniao_cgtic',
-    'dt_aprov_cgtic',
-    'action'
+    "num_processo",
+    "nome_ug",
+    "nome_acao",
+    "vlr_total_aprovado",
+    "action",
   ];
 
-  constructor( private router: Router,
+  constructor(
+    private router: Router,
     private descentService: DescentService,
-    private dialogForm: MatDialog ) { }
+    private dialogForm: MatDialog
+  ) {}
 
   ngOnInit(): void {
     this.carregarDados();
   }
 
   carregarDados() {
-    this.descentService.read().subscribe( retorno => {
-      this.descents = new MatTableDataSource( retorno );
+    this.descentService.read().subscribe((retorno) => {
+      this.descents = new MatTableDataSource(retorno);
       this.descents.sort = this.sort;
       this.descents.paginator = this.paginator;
-    })
+    });
   }
 
   novaDescent(): void {
@@ -50,10 +50,10 @@ export class DescentComponent implements OnInit {
     dialogConfig.autoFocus = true;
     dialogConfig.width = "50%";
     dialogConfig.data = null;
-    const dialogRef = this.dialogForm.open(DescentFormComponent, dialogConfig)
-    dialogRef.afterClosed().subscribe ( result => {
+    const dialogRef = this.dialogForm.open(DescentFormComponent, dialogConfig);
+    dialogRef.afterClosed().subscribe((result) => {
       this.carregarDados();
-    })
+    });
   }
 
   updateDescent(id: string): void {
@@ -61,19 +61,19 @@ export class DescentComponent implements OnInit {
     dialogConfig.disableClose = true;
     dialogConfig.autoFocus = true;
     dialogConfig.width = "50%";
-    dialogConfig.data = {idDescent: id};
-    const dialogRef = this.dialogForm.open(DescentFormComponent, dialogConfig)
-    dialogRef.afterClosed().subscribe ( result => {
+    dialogConfig.data = { idDescent: id };
+    const dialogRef = this.dialogForm.open(DescentFormComponent, dialogConfig);
+    dialogRef.afterClosed().subscribe((result) => {
       this.carregarDados();
-    })
+    });
   }
 
   deleteDescent(id: string): void {
-    if ( confirm( 'Tem certeza que deseja excluir esta Descentralização? ' )) {
-      this.descentService.delete( +id ).subscribe( () => {
-        this.descentService.showMessage('Descentralizazção excluída.');
+    if (confirm("Tem certeza que deseja excluir esta Descentralização? ")) {
+      this.descentService.delete(+id).subscribe(() => {
+        this.descentService.showMessage("Descentralizazção excluída.");
         this.carregarDados();
-      })
+      });
     }
   }
 
@@ -85,5 +85,4 @@ export class DescentComponent implements OnInit {
     this.searchKey = "";
     this.pesquisar();
   }
-
 }
