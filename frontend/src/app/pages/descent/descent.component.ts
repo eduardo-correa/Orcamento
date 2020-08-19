@@ -20,9 +20,9 @@ export class DescentComponent implements OnInit {
   searchKey: string;
   displayedColumns = [
     "num_processo",
-    "nome_ug",
     "nome_acao",
-    "vlr_total_aprovado",
+    "reuniao_cgtic",
+    "dt_aprov_cgtic",
     "action",
   ];
 

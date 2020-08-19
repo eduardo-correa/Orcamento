@@ -42,18 +42,6 @@
       <td mat-cell *matCellDef="let row">{{ row.num_processo }}</td>
     </ng-container>
 
-    <ng-container matColumnDef="nome_ug">
-      <th
-        mat-header-cell
-        *matHeaderCellDef
-        mat-sort-header
-        matTooltip="Regional"
-      >
-        UG
-      </th>
-      <td mat-cell *matCellDef="let row">{{ row.nome_ug }}</td>
-    </ng-container>
-
     <ng-container matColumnDef="nome_acao">
       <th
         mat-header-cell
@@ -66,17 +54,30 @@
       <td mat-cell *matCellDef="let row">{{ row.nome_acao }}</td>
     </ng-container>
 
-    <ng-container matColumnDef="vlr_total_aprovado">
+    <ng-container matColumnDef="reuniao_cgtic">
       <th
         mat-header-cell
         *matHeaderCellDef
         mat-sort-header
-        matTooltip="Valor Aprovado"
+        matTooltip="Reunião em que foi aprovada"
       >
-        Valor Aprovado
+        Reunião do CGTIC
+      </th>
+      <td mat-cell *matCellDef="let row">{{ row.reuniao_cgtic }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="dt_aprov_cgtic">
+      <th
+        mat-header-cell
+        *matHeaderCellDef
+        mat-sort-header
+        matTooltip="Data da Aprovação"
+      >
+        Data da aprovação
       </th>
       <td mat-cell *matCellDef="let row">
-        {{ row.vlr_total_aprovado | currency: "BRL" }}
+        <!-- {{ row.dt_aprov_cgtic | currency: "BRL" }} -->
+        {{ row.dt_aprov_cgtic | date }}
       </td>
     </ng-container>
 

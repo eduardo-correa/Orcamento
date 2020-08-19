@@ -1,73 +1,97 @@
 <mat-card class="titulo mat-elevation-z0">
-  <div *ngIf="data; then updateTitle else createTitle"></div>
-    <ng-template #updateTitle>
-      <mat-card-title class="title">
-        Editar Nota de Crédito
-      </mat-card-title>
-    </ng-template>
-    <ng-template #createTitle>
-      <mat-card-title class="title">
-        Nova Nota de Crédito
-      </mat-card-title>
-    </ng-template>
+  <div *ngIf="data; then updateTitle; else createTitle"></div>
+  <ng-template #updateTitle>
+    <mat-card-title class="title">
+      Editar Nota de Crédito
+    </mat-card-title>
+  </ng-template>
+  <ng-template #createTitle>
+    <mat-card-title class="title">
+      Nova Nota de Crédito
+    </mat-card-title>
+  </ng-template>
 </mat-card>
 
 <mat-card class="home mat-elevation-z4">
-  <form>
+  <form [formGroup]="formulario">
     <mat-grid-list cols="2" rowHeight="300px">
-      
       <mat-grid-tile>
         <div class="controles-container">
           <mat-form-field>
-            <input matInput placeholder="Número da NC"
-              [(ngModel)]="ntCredito.num_nota_credito" name="num_nota_credito">
+            <input
+              matInput
+              placeholder="Número da NC"
+              formControlName="num_nota_credito"
+            />
+            <mat-error>Campo obrigatório</mat-error>
           </mat-form-field>
           <mat-form-field>
-            <input matInput placeholder="Descentralização"
-              [(ngModel)]="ntCredito.id_descentralizacao" name="id_descentralizacao">
+            <input
+              matInput
+              placeholder="Descentralização"
+              formControlName="id_descentralizacao"
+            />
+            <mat-error>Campo obrigatório</mat-error>
           </mat-form-field>
           <mat-form-field>
-            <input matInput placeholder="Valor"
-              [(ngModel)]="ntCredito.valor" name="valor">
+            <input matInput placeholder="Valor" formControlName="valor" />
+            <mat-error>Campo obrigatório</mat-error>
           </mat-form-field>
         </div>
       </mat-grid-tile>
-      
+
       <mat-grid-tile>
         <div class="controles-container">
           <mat-form-field>
             <mat-label>Data da aprovação</mat-label>
-            <input matInput [matDatepicker]="picker"
-            [(ngModel)]="ntCredito.dt_nota_credito" name="dt_nota_credito">
-            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <input
+              matInput
+              [matDatepicker]="picker"
+              formControlName="dt_nota_credito"
+            />
+            <mat-error>Campo obrigatório</mat-error>
+            <mat-datepicker-toggle
+              matSuffix
+              [for]="picker"
+            ></mat-datepicker-toggle>
             <mat-datepicker #picker color="primary"></mat-datepicker>
           </mat-form-field>
-      
+
           <mat-form-field>
             <mat-label>Unidade Gestora</mat-label>
-            <mat-select [(ngModel)]="ntCredito.ug_favorecida" name="ug_favorecida">
+            <mat-select formControlName="ug_favorecida">
               <mat-option *ngFor="let ug of ugs" [value]="ug.id_ug">
-                {{ug.cod_ug}}
+                {{ ug.cod_ug }}
               </mat-option>
             </mat-select>
+            <mat-error>Campo obrigatório</mat-error>
           </mat-form-field>
 
           <div class="button-row">
-            <button *ngIf="data" mat-raised-button (click)="updateNC(data.idNC)" color="primary">
+            <button
+              *ngIf="data"
+              mat-raised-button
+              (click)="updateNC()"
+              color="primary"
+              [disabled]="formulario.invalid"
+            >
               Atualizar
             </button>
-            <button *ngIf="!data" mat-raised-button (click)="createNC()" color="primary">
+            <button
+              *ngIf="!data"
+              mat-raised-button
+              (click)="createNC()"
+              color="primary"
+              [disabled]="formulario.invalid"
+            >
               Salvar
             </button>
-            <button mat-raised-button (click)="cancel()">
+            <button mat-raised-button mat-dialog-close>
               Cancelar
             </button>
           </div>
-           
         </div>
-        
       </mat-grid-tile>
     </mat-grid-list>
   </form>
-
 </mat-card>
