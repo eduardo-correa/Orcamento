@@ -1,15 +1,15 @@
 <mat-card class="titulo mat-elevation-z0">
-  <div *ngIf="data; then updateTitle else createTitle"></div>
-    <ng-template #updateTitle>
-      <mat-card-title class="title">
-        Editar Descentralização
-      </mat-card-title>
-    </ng-template>
-    <ng-template #createTitle>
-      <mat-card-title class="title">
-        Nova Descentralização
-      </mat-card-title>
-    </ng-template>
+  <div *ngIf="data; then updateTitle; else createTitle"></div>
+  <ng-template #updateTitle>
+    <mat-card-title class="title">
+      Editar Descentralização
+    </mat-card-title>
+  </ng-template>
+  <ng-template #createTitle>
+    <mat-card-title class="title">
+      Nova Descentralização
+    </mat-card-title>
+  </ng-template>
 </mat-card>
 
 <mat-card class="home mat-elevation-z4">
@@ -18,18 +18,31 @@
       <mat-grid-tile>
         <div class="controles-container">
           <mat-form-field>
-            <input matInput placeholder="Nr. do DDO"
-              [(ngModel)]="descent.id_ddo" name="id_ddo">
+            <input
+              matInput
+              placeholder="Nr. do DDO"
+              [(ngModel)]="descent.id_ddo"
+              name="id_ddo"
+            />
           </mat-form-field>
-      
+
           <mat-form-field>
-            <input matInput placeholder="Valor Aprovado"
-              [(ngModel)]="descent.vlr_total_aprovado" name="vlr_total_aprovado">
+            <input
+              matInput
+              placeholder="Valor Aprovado"
+              type="number"
+              [(ngModel)]="descent.vlr_total_aprovado"
+              name="vlr_total_aprovado"
+            />
           </mat-form-field>
-      
+
           <mat-form-field>
-            <input matInput placeholder="Nr. PAE"
-              [(ngModel)]="descent.num_processo" name="num_processo">
+            <input
+              matInput
+              placeholder="Nr. PAE"
+              [(ngModel)]="descent.num_processo"
+              name="num_processo"
+            />
           </mat-form-field>
         </div>
       </mat-grid-tile>
@@ -38,28 +51,48 @@
         <div class="controles-container">
           <mat-form-field>
             <mat-label>Reunião do CGTIC</mat-label>
-            <mat-select [(ngModel)]="descent.reuniao_cgtic" name="reuniao_cgtic">
+            <mat-select
+              [(ngModel)]="descent.reuniao_cgtic"
+              name="reuniao_cgtic"
+            >
               <mat-option *ngFor="let reuniao of reunioes" [value]="reuniao">
-                {{reuniao}}
+                {{ reuniao }}
               </mat-option>
             </mat-select>
             <!-- <input matInput placeholder="Nr. da Reunião do CGGTIC"
               [(ngModel)]="descent.reuniao_cgtic" name="reuniao_cgtic"> -->
           </mat-form-field>
-      
+
           <mat-form-field>
             <mat-label>Data da aprovação</mat-label>
-            <input matInput [matDatepicker]="picker"
-            [(ngModel)]="descent.dt_aprov_cgtic" name="dt_aprov_cgtic">
-            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <input
+              matInput
+              [matDatepicker]="picker"
+              [(ngModel)]="descent.dt_aprov_cgtic"
+              name="dt_aprov_cgtic"
+            />
+            <mat-datepicker-toggle
+              matSuffix
+              [for]="picker"
+            ></mat-datepicker-toggle>
             <mat-datepicker #picker color="primary"></mat-datepicker>
           </mat-form-field>
 
           <div class="button-row">
-            <button *ngIf="data" mat-raised-button (click)="updateDescent()" color="primary">
+            <button
+              *ngIf="data"
+              mat-raised-button
+              (click)="updateDescent()"
+              color="primary"
+            >
               Atualizar
             </button>
-            <button *ngIf="!data" mat-raised-button (click)="createDescent()" color="primary">
+            <button
+              *ngIf="!data"
+              mat-raised-button
+              (click)="createDescent()"
+              color="primary"
+            >
               Salvar
             </button>
             <button mat-raised-button (click)="cancel()">
@@ -68,7 +101,6 @@
           </div>
         </div>
       </mat-grid-tile>
-
     </mat-grid-list>
   </form>
 </mat-card>

@@ -7,37 +7,57 @@
 <mat-card class="mat-elevation-z4">
   <form>
     <mat-grid-list cols="2" rowHeight="300px">
-      
       <mat-grid-tile>
         <div class="controles-container">
-
           <mat-form-field>
-            <input matInput placeholder="Licitação" disabled
-              [(ngModel)]="identificaARP" name="identificaARP">
+            <input
+              matInput
+              placeholder="Licitação"
+              disabled
+              [(ngModel)]="identificaARP"
+              name="identificaARP"
+            />
           </mat-form-field>
           <mat-form-field>
-            <input matInput placeholder="Item" disabled
-              [(ngModel)]="nomeItem" name="nomeItem">
+            <input
+              matInput
+              placeholder="Item"
+              disabled
+              [(ngModel)]="nomeItem"
+              name="nomeItem"
+            />
           </mat-form-field>
           <mat-form-field>
-            <input matInput placeholder="Valor" disabled
-              [(ngModel)]="valorItem" name="valorItem">
+            <input
+              matInput
+              placeholder="Valor"
+              disabled
+              [(ngModel)]="valorItem"
+              name="valorItem"
+            />
           </mat-form-field>
-          
         </div>
       </mat-grid-tile>
 
       <mat-grid-tile>
         <div class="controles-container">
-
           <mat-form-field>
-            <input matInput placeholder="Elemento de Despesa"
-              [(ngModel)]="ddoItem.elemento_despesa" name="elemento_despesa">
+            <input
+              matInput
+              placeholder="Elemento de Despesa"
+              [(ngModel)]="ddoItem.elemento_despesa"
+              name="elemento_despesa"
+            />
           </mat-form-field>
 
           <mat-form-field>
-            <input matInput placeholder="Qtd. Demandada"
-              [(ngModel)]="ddoItem.qtd_demandada" name="qtd_demandada">
+            <input
+              matInput
+              placeholder="Qtd. Demandada"
+              type="number"
+              [(ngModel)]="ddoItem.qtd_demandada"
+              name="qtd_demandada"
+            />
           </mat-form-field>
 
           <!-- <mat-form-field>
@@ -51,7 +71,7 @@
       <button mat-raised-button (click)="updateItem()" color="primary">
         Atualizar
       </button>
-      
+
       <button mat-raised-button mat-dialog-close>
         Cancelar
       </button>

@@ -1,6 +1,7 @@
 /* You can add global styles to this file, and also import other style files */
 
-html, body {
+html,
+body {
   height: 100%;
 }
 
@@ -10,11 +11,11 @@ body {
 }
 
 .azul-csjt {
-  color: #2A5683;
+  color: #2a5683;
 }
 
 .verde-csjt {
-  color: #007B5F;
+  color: #007b5f;
 }
 
 .v-middle {
@@ -22,13 +23,13 @@ body {
 }
 
 .msg-sucess {
-  background-color: #DAA60A;
-  color: #FFF;
+  background-color: #daa60a;
+  color: #fff;
 }
 
 .msg-error {
-  background-color: #E35E6B;
-  color: #FFF;
+  background-color: #e35e6b;
+  color: #fff;
 }
 
 .espaco {
@@ -36,5 +37,18 @@ body {
 }
 
 tr.mat-row:hover {
-  background-color: #EEE;
+  background-color: #eee;
+}
+
+// Tirar as setas dos inputs do tipo NUMBER
+// Chrome, Safari, Edge, Opera
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+// Firefox
+input[type="number"] {
+  -moz-appearance: textfield;
 }
