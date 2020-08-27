@@ -1,4 +1,21 @@
+DROP TABLE IF EXISTS public.nota_credito CASCADE;
+DROP TABLE IF EXISTS public.ddo_descentralizacao CASCADE;
+DROP TABLE IF EXISTS public.pae_descentralizacao CASCADE;
+DROP TABLE IF EXISTS public.ddo_item CASCADE;
+DROP TABLE IF EXISTS public.ddo CASCADE;
+DROP TABLE IF EXISTS public.licitacao_item CASCADE;
+DROP TABLE IF EXISTS public.licitacao CASCADE;
+DROP TABLE IF EXISTS public.unidade_gestora CASCADE;
+DROP TABLE IF EXISTS public.acao CASCADE;
+DROP TABLE IF EXISTS public.usuario CASCADE;
+DROP TABLE IF EXISTS public.perfil CASCADE;
+DROP TABLE IF EXISTS public.auditoria CASCADE;
+
+
+
+---------------------------
 -- public.perfil definition
+---------------------------
 CREATE TABLE public.perfil (
   id_perfil SMALLSERIAL NOT NULL PRIMARY KEY,
   nome VARCHAR NOT NULL,
@@ -9,7 +26,10 @@ COMMENT ON COLUMN perfil.id_perfil IS 'Identificação do perfil, criada automat
 COMMENT ON COLUMN perfil.nome IS 'Nome do perfil';
 COMMENT ON COLUMN perfil.descricao IS 'Descrição das permissões do perfil';
 
+
+------------------------------------
 -- public.unidade_gestora definition
+------------------------------------
 CREATE TABLE public.unidade_gestora (
   id_ug INTEGER NOT NULL PRIMARY KEY,
   cod_ug VARCHAR NOT NULL,
@@ -23,7 +43,9 @@ COMMENT ON COLUMN unidade_gestora.nome IS 'Nome da Unidade Gestora';
 COMMENT ON COLUMN unidade_gestora.uf IS 'UF da Unidade Gestora';
 
 
+----------------------------
 -- public.usuario definition
+----------------------------
 CREATE TABLE public.usuario (
   id_usuario SERIAL NOT NULL PRIMARY KEY,
   id_perfil INTEGER NOT NULL REFERENCES perfil(id_perfil),
@@ -43,7 +65,9 @@ COMMENT ON COLUMN usuario.senha IS 'Senha de login do usuário';
 COMMENT ON COLUMN usuario.ativo IS 'Se o usuário do sistema está ativo ou não';
 
 
+-------------------------
 -- public.acao definition
+-------------------------
 CREATE TABLE public.acao (
   id_acao SERIAL NOT NULL PRIMARY KEY,
   nome VARCHAR NOT NULL,
@@ -57,7 +81,9 @@ COMMENT ON COLUMN acao.descricao IS 'Descrição da ação';
 COMMENT ON COLUMN acao.id_usuario IS 'Usuário do sistema responsável pela última alteração';
 
 
+------------------------------
 -- public.licitacao definition
+------------------------------
 CREATE TABLE public.licitacao (
   id_licitacao SERIAL NOT NULL PRIMARY KEY,
   id_acao INTEGER NOT NULL REFERENCES acao(id_acao) ON DELETE CASCADE,
@@ -83,7 +109,9 @@ COMMENT ON COLUMN licitacao.ativa IS 'Se a Licitação está valida ou não';
 COMMENT ON COLUMN licitacao.id_usuario IS 'Usuário do sistema responsável pela última alteração';
 
 
+-----------------------------------
 -- public.licitacao_item definition
+-----------------------------------
 CREATE TABLE public.licitacao_item (
   id_licitacao_item SERIAL NOT NULL PRIMARY KEY,
   id_licitacao INTEGER NOT NULL REFERENCES licitacao(id_licitacao) ON DELETE CASCADE,
@@ -103,7 +131,9 @@ COMMENT ON COLUMN licitacao_item.dt_registro IS 'Data da última alteração no 
 COMMENT ON COLUMN licitacao_item.id_usuario IS 'Usuário do sistema responsável pela última alteração';
 
 
+------------------------
 -- public.ddo definition
+------------------------
 CREATE TABLE public.ddo (
   id_ddo SERIAL NOT NULL PRIMARY KEY,
   id_ug INTEGER NOT NULL REFERENCES unidade_gestora(id_ug) ON DELETE CASCADE,
@@ -135,7 +165,9 @@ COMMENT ON COLUMN ddo.po_local IS 'Se o DDO está incluído no Plano Orçamentá
 COMMENT ON COLUMN ddo.id_usuario IS 'Usuário do sistema responsável pela última alteração';
 
 
+-----------------------------
 -- public.ddo_item definition
+-----------------------------
 CREATE TABLE public.ddo_item (
   id_ddo_item SERIAL NOT NULL PRIMARY KEY,
   id_ddo INTEGER NOT NULL REFERENCES ddo(id_ddo) ON DELETE CASCADE,
@@ -155,29 +187,28 @@ COMMENT ON COLUMN ddo_item.elemento_despesa IS 'Número doelemento de despesa qu
 COMMENT ON COLUMN ddo_item.id_usuario IS 'Usuário do sistema responsável pela última alteração';
 
 
--- public.descentralizacao definition
-CREATE TABLE public.descentralizacao (
-  id_descentralizacao SERIAL NOT NULL PRIMARY KEY,
-  id_ddo INTEGER NOT NULL REFERENCES ddo(id_ddo) ON DELETE CASCADE,
-  vlr_total_aprovado DECIMAL(12,2) NOT NULL,
+-------------------------------------
+-- public.pae_descentralizacao definition
+-------------------------------------
+CREATE TABLE public.pae_descentralizacao (
+  id_pae_descentralizacao SERIAL NOT NULL PRIMARY KEY,
   num_processo VARCHAR NULL,
   ord_descentralizacao SMALLINT NOT NULL,
   id_usuario INTEGER NOT NULL REFERENCES usuario(id_usuario)
 );
-COMMENT ON TABLE descentralizacao IS 'Tabela de informações das descentralizações';
-COMMENT ON COLUMN descentralizacao.id_descentralizacao IS 'Identificação da descentralização, criada automaticamente';
-COMMENT ON COLUMN descentralizacao.id_ddo IS 'Identificação do ddo a qual a descentralização faz referência';
-COMMENT ON COLUMN descentralizacao.vlr_total_aprovado IS 'Valor aprovado da demanda';
-COMMENT ON COLUMN descentralizacao.num_processo IS 'Identificação do Processo Administrativo que trata a descentralização';
-COMMENT ON COLUMN descentralizacao.ord_descentralizacao IS 'Quando existe mais de uma descentralização por PAE, este campo define a ordem das descentralizações';
-COMMENT ON COLUMN descentralizacao.id_usuario IS 'Usuário do sistema responsável pela última alteração';
+COMMENT ON TABLE pae_descentralizacao IS 'Tabela de informações das descentralizações cadastradas em um PAE';
+COMMENT ON COLUMN pae_descentralizacao.id_pae_descentralizacao IS 'Identificação da descentralização, criada automaticamente';
+COMMENT ON COLUMN pae_descentralizacao.num_processo IS 'Identificação do Processo Administrativo que trata a descentralização';
+COMMENT ON COLUMN pae_descentralizacao.ord_descentralizacao IS 'Quando existe mais de uma descentralização por PAE, este campo define a ordem das descentralizações';
+COMMENT ON COLUMN pae_descentralizacao.id_usuario IS 'Usuário do sistema responsável pela última alteração';
 
 
--- public.proc_descentralizacao definition
-CREATE TABLE public.proc_descentralizacao (
-  id_proc_descentralizacao SERIAL NOT NULL PRIMARY KEY,
-  id_ug INTEGER NOT NULL REFERENCES unidade_gestora(id_ug) ON DELETE CASCADE,
-  id_descentralizacao INTEGER NOT NULL REFERENCES descentralizacao(id_descentralizacao) ON DELETE CASCADE,
+----------------------------------------
+-- public.ddo_descentralizacao definition
+----------------------------------------
+CREATE TABLE public.ddo_descentralizacao (
+  id_ddo_descentralizacao SERIAL NOT NULL PRIMARY KEY,
+  id_pae_descentralizacao INTEGER NOT NULL REFERENCES pae_descentralizacao(id_pae_descentralizacao) ON DELETE CASCADE,
   id_ddo INTEGER NOT NULL REFERENCES ddo(id_ddo) ON DELETE CASCADE,
   qtd_aprovada INTEGER NOT NULL,
   vlr_aprovado DECIMAL(12,2) NOT NULL,
@@ -185,40 +216,40 @@ CREATE TABLE public.proc_descentralizacao (
   dt_aprov_cgtic DATE NULL,
   id_usuario INTEGER NOT NULL REFERENCES usuario(id_usuario)
 );
-COMMENT ON TABLE proc_descentralizacao IS 'Tabela de informações das descentralizações por UG';
-COMMENT ON COLUMN proc_descentralizacao.id_proc_descentralizacao IS 'Identificação da descentralização dentro de um PAE, criada automaticamente';
-COMMENT ON COLUMN proc_descentralizacao.id_ug IS 'Identificação da UG a qual a descentralização faz referência';
-COMMENT ON COLUMN proc_descentralizacao.id_descentralizacao IS 'Identificação da Descentralização referenciada dentro do PAE.';
-COMMENT ON COLUMN proc_descentralizacao.id_ddo IS 'Identificação do DDO a qual a descentralização faz referência';
-COMMENT ON COLUMN proc_descentralizacao.qtd_aprovada IS 'Quantidade aprovada para esta descentralização';
-COMMENT ON COLUMN proc_descentralizacao.vlr_aprovado IS 'Valor aprovado para esta descentralização';
-COMMENT ON COLUMN proc_descentralizacao.reuniao_cgtic IS 'Identificação da reunião do CGTIC onde foi aprovada a descentralização';
-COMMENT ON COLUMN proc_descentralizacao.dt_aprov_cgtic IS 'Data da reunião do CGTIC onde foi aprovada a descentralização';
-COMMENT ON COLUMN proc_descentralizacao.id_usuario IS 'Usuário do sistema responsável pela última alteração';
+COMMENT ON TABLE ddo_descentralizacao IS 'Tabela de informações das descentralizações por UG (TRT)';
+COMMENT ON COLUMN ddo_descentralizacao.id_ddo_descentralizacao IS 'Identificação da descentralização dentro de um PAE, criada automaticamente';
+COMMENT ON COLUMN ddo_descentralizacao.id_pae_descentralizacao IS 'Identificação da Descentralização referenciada dentro do PAE.';
+COMMENT ON COLUMN ddo_descentralizacao.id_ddo IS 'Identificação do DDO a qual a descentralização faz referência';
+COMMENT ON COLUMN ddo_descentralizacao.qtd_aprovada IS 'Quantidade aprovada para esta descentralização';
+COMMENT ON COLUMN ddo_descentralizacao.vlr_aprovado IS 'Valor aprovado para esta descentralização';
+COMMENT ON COLUMN ddo_descentralizacao.reuniao_cgtic IS 'Identificação da reunião do CGTIC onde foi aprovada a descentralização';
+COMMENT ON COLUMN ddo_descentralizacao.dt_aprov_cgtic IS 'Data da reunião do CGTIC onde foi aprovada a descentralização';
+COMMENT ON COLUMN ddo_descentralizacao.id_usuario IS 'Usuário do sistema responsável pela última alteração';
 
 
-
+---------------------------------
 -- public.nota_credito definition
+---------------------------------
 CREATE TABLE public.nota_credito (
   id_nota_credito SERIAL NOT NULL PRIMARY KEY,
   num_nota_credito VARCHAR NOT NULL,
-  id_descentralizacao INTEGER NOT NULL REFERENCES descentralizacao(id_descentralizacao) ON DELETE CASCADE,
+  id_ddo_descentralizacao INTEGER NOT NULL REFERENCES ddo_descentralizacao(id_ddo_descentralizacao) ON DELETE CASCADE,
   valor DECIMAL(12,2) NOT NULL,
   dt_nota_credito DATE NOT NULL,
-  ug_favorecida INTEGER NOT NULL REFERENCES unidade_gestora(id_ug) ON DELETE CASCADE,
   id_usuario INTEGER NOT NULL REFERENCES usuario(id_usuario)
 );
 COMMENT ON TABLE nota_credito IS 'Tabela de informações das Notas de Crédito';
 COMMENT ON COLUMN nota_credito.id_nota_credito IS 'Identificação da NC, criada automaticamente';
 COMMENT ON COLUMN nota_credito.num_nota_credito IS 'Número da NC';
-COMMENT ON COLUMN nota_credito.id_descentralizacao IS 'Identificação da descentralização a qual a NC faz referência';
+COMMENT ON COLUMN nota_credito.id_ddo_descentralizacao IS 'Identificação da descentralização a qual a NC faz referência';
 COMMENT ON COLUMN nota_credito.valor IS 'Valor da NC';
 COMMENT ON COLUMN nota_credito.dt_nota_credito IS 'Data da NC';
-COMMENT ON COLUMN nota_credito.ug_favorecida IS 'UG favorecida com a NC';
 COMMENT ON COLUMN nota_credito.id_usuario IS 'Usuário do sistema responsável pela última alteração';
 
 
+------------------------------
 -- public.auditoria definition
+------------------------------
 CREATE TABLE public.auditoria (
   id_operacao SERIAL NOT NULL PRIMARY KEY,
   dt_operacao TIMESTAMP DEFAULT LOCALTIMESTAMP,
@@ -236,7 +267,9 @@ COMMENT ON COLUMN auditoria.nome_tabela IS 'Nome da tabela onde a operação foi
 COMMENT ON COLUMN auditoria.dados IS 'Informação da operação realizada: nome da tabela, coluna e dados alterados';
 
 
+---------------------------
 -- Function GERAR_AUDITORIA
+---------------------------
 CREATE OR REPLACE FUNCTION public.gerar_auditoria()
 RETURNS trigger AS $$
 BEGIN
@@ -255,8 +288,9 @@ END;
 $$ LANGUAGE plpgsql;
 
 
-
+-------------------------------------
 -- Triggers para realizar a auditoria
+-------------------------------------
 CREATE TRIGGER audit_operacao AFTER INSERT OR UPDATE OR DELETE ON
   public.usuario FOR EACH ROW EXECUTE FUNCTION gerar_auditoria();
 CREATE TRIGGER audit_operacao AFTER INSERT OR UPDATE OR DELETE ON
@@ -270,12 +304,16 @@ CREATE TRIGGER audit_operacao AFTER INSERT OR UPDATE OR DELETE ON
 CREATE TRIGGER audit_operacao AFTER INSERT OR UPDATE OR DELETE ON
   public.ddo_item FOR EACH ROW EXECUTE FUNCTION gerar_auditoria();
 CREATE TRIGGER audit_operacao AFTER INSERT OR UPDATE OR DELETE ON
-  public.descentralizacao FOR EACH ROW EXECUTE FUNCTION gerar_auditoria();
+  public.pae_descentralizacao FOR EACH ROW EXECUTE FUNCTION gerar_auditoria();
+CREATE TRIGGER audit_operacao AFTER INSERT OR UPDATE OR DELETE ON
+  public.ddo_descentralizacao FOR EACH ROW EXECUTE FUNCTION gerar_auditoria();
 CREATE TRIGGER audit_operacao AFTER INSERT OR UPDATE OR DELETE ON
   public.nota_credito FOR EACH ROW EXECUTE FUNCTION gerar_auditoria();
 
 
+-----------------------------------
 -- View para exibir os dados do DDO
+-----------------------------------
 CREATE VIEW ddo_dados AS
 SELECT
   ddo.id_ddo,
@@ -292,6 +330,7 @@ SELECT
 	ddo.cronograma,
 	ddo.ass_presidente,
 	ddo.po_local,
+  concat_ws('-', ug.cod_ug, acao.nome) as identifica_ddo,
 	ddo.id_usuario
 FROM public.ddo, public.acao, public.unidade_gestora ug
 WHERE
@@ -299,7 +338,9 @@ WHERE
 	ddo.id_ug = ug.id_ug;
 
 
+---------------------------------------------
 -- View para exibir os dados dos itens do DDO
+---------------------------------------------
 CREATE VIEW ddo_itens_dados AS
 SELECT
   ddo_item.id_ddo_item,
@@ -318,8 +359,9 @@ WHERE
 	ddo_item.id_licitacao = licitacao.id_licitacao;
 
 
-
+-----------------------------------------
 -- View para exibir os dados da Licitação
+-----------------------------------------
 CREATE VIEW licitacao_dados AS
 SELECT
 	licitacao.id_licitacao,
@@ -340,52 +382,54 @@ WHERE
 	licitacao.id_ug = ug.id_ug AND
   licitacao.ativa;
 
-
+------------------------------------------------
 -- View para exibir os dados da Descentralização
+------------------------------------------------
 CREATE VIEW descent_dados AS
 SELECT
-  d.id_ddo,
-  d.vlr_total_aprovado,
-  d.num_processo,
-  d.ord_descentralizacao,
-  ug.cod_ug AS nome_ug,
+  pae.num_processo,
+  pae.ord_descentralizacao,
   acao.nome AS nome_acao,
-  proc.reuniao_cgtic,
-  proc.dt_aprov_cgtic
+  ug.cod_ug AS nome_ug,
+  d_ddo.reuniao_cgtic,
+  d_ddo.dt_aprov_cgtic,
+  d_ddo.id_ddo,
+  d_ddo.vlr_aprovado,
+  concat_ws('-', ug.cod_ug, acao.nome) as identifica_ddo
 FROM
-  public.descentralizacao d,
+  public.pae_descentralizacao pae,
   public.ddo,
   public.unidade_gestora ug,
   public.acao,
-  public.proc_descentralizacao proc
+  public.ddo_descentralizacao d_ddo
 WHERE
-  d.id_ddo = ddo.id_ddo AND
+  d_ddo.id_ddo = ddo.id_ddo AND
   ddo.id_ug = ug.id_ug AND
   ddo.id_acao = acao.id_acao AND
-  d.id_descentralizacao = proc.id_descentralizacao;
+  pae.id_pae_descentralizacao = d_ddo.id_pae_descentralizacao;
 
-
+-----------------------------------------------
 -- View para exibir os dados da Nota de Crédito
+-----------------------------------------------
 CREATE VIEW notaCredito_dados AS
 SELECT
   nc.id_nota_credito,
-  nc.id_descentralizacao,
+  nc.id_ddo_descentralizacao,
   nc.num_nota_credito,
   nc.valor,
   nc.dt_nota_credito,
-  nc.ug_favorecida,
   acao.descricao as descricao_acao,
   acao.nome as nome_acao,
   ug.cod_ug as nome_ug
 FROM
   public.nota_credito nc,
-  public.descentralizacao descent,
+  public.ddo_descentralizacao descent,
   public.ddo ddo,
   public.acao acao,
   public.unidade_gestora ug
 WHERE
-  nc.ug_favorecida = ug.id_ug AND
-  nc.id_descentralizacao = descent.id_descentralizacao AND
+  ddo.id_ug = ug.id_ug AND
+  nc.id_ddo_descentralizacao = descent.id_ddo_descentralizacao AND
   descent.id_ddo = ddo.id_ddo AND
   ddo.id_acao = acao.id_acao
 ;

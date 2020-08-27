@@ -8,7 +8,7 @@ const LicitacaoItemController = require("./controllers/LicitacaoItemController")
 const DDOController = require("./controllers/DDOController");
 const DDOItemController = require("./controllers/DDOItemController");
 const DescentController = require("./controllers/DescentController");
-const ProcDescentController = require("./controllers/ProcDescentController");
+const DdoDescentController = require("./controllers/DdoDescentController");
 const NtCreditoController = require("./controllers/NotaCreditoController");
 
 const routes = express.Router();
@@ -77,11 +77,11 @@ routes.delete("/descentralizacao/:id", DescentController.delete);
 routes.put("/descentralizacao/:id", DescentController.update);
 
 // Proc Descentralização
-routes.get("/procdescentralizacao", ProcDescentController.list);
-routes.get("/procdescentralizacao/:id", ProcDescentController.find);
-routes.post("/procdescentralizacao", ProcDescentController.create);
-routes.delete("/procdescentralizacao/:id", ProcDescentController.delete);
-routes.put("/procdescentralizacao/:id", ProcDescentController.update);
+routes.get("/ddodescentralizacao", DdoDescentController.list);
+routes.get("/ddodescentralizacao/:id", DdoDescentController.find);
+routes.post("/ddodescentralizacao", DdoDescentController.create);
+routes.delete("/ddodescentralizacao/:id", DdoDescentController.delete);
+routes.put("/ddodescentralizacao/:id", DdoDescentController.update);
 
 // Nota de crédito
 routes.get("/nt_credito", NtCreditoController.list);
