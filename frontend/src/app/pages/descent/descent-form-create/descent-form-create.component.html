@@ -1,14 +1,10 @@
 <mat-card class="titulo mat-elevation-z0">
   <div *ngIf="data; then updateTitle; else createTitle"></div>
   <ng-template #updateTitle>
-    <mat-card-title class="title">
-      Editar Descentralização
-    </mat-card-title>
+    <mat-card-title class="title"> Editar Descentralização </mat-card-title>
   </ng-template>
   <ng-template #createTitle>
-    <mat-card-title class="title">
-      Nova Descentralização
-    </mat-card-title>
+    <mat-card-title class="title"> Nova Descentralização </mat-card-title>
   </ng-template>
 </mat-card>
 
@@ -31,7 +27,7 @@
               matInput
               placeholder="Valor Aprovado"
               type="number"
-              [(ngModel)]="descent.vlr_total_aprovado"
+              [(ngModel)]="descent.vlr_aprovado"
               name="vlr_total_aprovado"
             />
           </mat-form-field>
@@ -95,9 +91,7 @@
             >
               Salvar
             </button>
-            <button mat-raised-button (click)="cancel()">
-              Cancelar
-            </button>
+            <button mat-raised-button (click)="cancel()">Cancelar</button>
           </div>
         </div>
       </mat-grid-tile>

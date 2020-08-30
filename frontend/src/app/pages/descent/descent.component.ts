@@ -3,10 +3,10 @@ import { MatSort } from "@angular/material/sort";
 import { MatTableDataSource } from "@angular/material/table";
 import { MatDialog, MatDialogConfig } from "@angular/material/dialog";
 import { DescentService } from "./descent.service";
-import { Router } from "@angular/router";
 import { Descent } from "./descent.model";
 import { Component, OnInit, ViewChild } from "@angular/core";
-import { DescentFormComponent } from "./descent-form/descent-form.component";
+import { DescentFormUpdateComponent } from "./descent-form-update/descent-form-update.component";
+import { DescentFormCreateComponent } from "./descent-form-create/descent-form-create.component";
 
 @Component({
   selector: "cggov-descent",
@@ -21,13 +21,12 @@ export class DescentComponent implements OnInit {
   displayedColumns = [
     "num_processo",
     "nome_acao",
-    "reuniao_cgtic",
+    "ord_descentralizacao",
     "dt_aprov_cgtic",
     "action",
   ];
 
   constructor(
-    private router: Router,
     private descentService: DescentService,
     private dialogForm: MatDialog
   ) {}
@@ -50,7 +49,10 @@ export class DescentComponent implements OnInit {
     dialogConfig.autoFocus = true;
     dialogConfig.width = "50%";
     dialogConfig.data = null;
-    const dialogRef = this.dialogForm.open(DescentFormComponent, dialogConfig);
+    const dialogRef = this.dialogForm.open(
+      DescentFormCreateComponent,
+      dialogConfig
+    );
     dialogRef.afterClosed().subscribe((result) => {
       this.carregarDados();
     });
@@ -62,7 +64,10 @@ export class DescentComponent implements OnInit {
     dialogConfig.autoFocus = true;
     dialogConfig.width = "50%";
     dialogConfig.data = { idDescent: id };
-    const dialogRef = this.dialogForm.open(DescentFormComponent, dialogConfig);
+    const dialogRef = this.dialogForm.open(
+      DescentFormUpdateComponent,
+      dialogConfig
+    );
     dialogRef.afterClosed().subscribe((result) => {
       this.carregarDados();
     });

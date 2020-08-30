@@ -54,16 +54,17 @@
       <td mat-cell *matCellDef="let row">{{ row.nome_acao }}</td>
     </ng-container>
 
-    <ng-container matColumnDef="reuniao_cgtic">
+    <ng-container matColumnDef="ord_descentralizacao">
       <th
         mat-header-cell
         *matHeaderCellDef
-        mat-sort-header
-        matTooltip="Reunião em que foi aprovada"
+        matTooltip="Ordem dentro do processo"
       >
-        Reunião do CGTIC
+        Ordem da Descentralização
       </th>
-      <td mat-cell *matCellDef="let row">{{ row.reuniao_cgtic }}</td>
+      <td mat-cell *matCellDef="let row">
+        {{ row.ord_descentralizacao }}
+      </td>
     </ng-container>
 
     <ng-container matColumnDef="dt_aprov_cgtic">
@@ -76,15 +77,9 @@
         Data da aprovação
       </th>
       <td mat-cell *matCellDef="let row">
-        <!-- {{ row.dt_aprov_cgtic | currency: "BRL" }} -->
         {{ row.dt_aprov_cgtic | date }}
       </td>
     </ng-container>
-
-    <!-- <ng-container matColumnDef="dt_aprov_cgtic">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header matTooltip="Data da aprovação">Dt. Aprovação</th>
-      <td mat-cell *matCellDef="let row">{{row.dt_aprov_cgtic  | date }}</td>
-    </ng-container> -->
 
     <ng-container matColumnDef="action">
       <th mat-header-cell *matHeaderCellDef>Ações</th>
@@ -92,7 +87,7 @@
         <button
           matTooltip="Editar Descentralização"
           mat-icon-button
-          (click)="updateDescent(row.id_descentralizacao)"
+          (click)="updateDescent(row.id_pae_descentralizacao)"
         >
           <mat-icon class="edit">edit</mat-icon>
         </button>

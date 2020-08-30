@@ -192,8 +192,8 @@ COMMENT ON COLUMN ddo_item.id_usuario IS 'Usuário do sistema responsável pela 
 -------------------------------------
 CREATE TABLE public.pae_descentralizacao (
   id_pae_descentralizacao SERIAL NOT NULL PRIMARY KEY,
-  num_processo VARCHAR NULL,
-  ord_descentralizacao SMALLINT NOT NULL,
+  num_processo VARCHAR NOT NULL,
+  ord_descentralizacao VARCHAR NOT NULL,
   id_usuario INTEGER NOT NULL REFERENCES usuario(id_usuario)
 );
 COMMENT ON TABLE pae_descentralizacao IS 'Tabela de informações das descentralizações cadastradas em um PAE';
@@ -387,6 +387,7 @@ WHERE
 ------------------------------------------------
 CREATE VIEW descent_dados AS
 SELECT
+  pae.id_pae_descentralizacao,
   pae.num_processo,
   pae.ord_descentralizacao,
   acao.nome AS nome_acao,
