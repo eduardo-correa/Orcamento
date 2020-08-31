@@ -1,4 +1,4 @@
-import { FormsModule } from "@angular/forms";
+import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { MaterialModule } from "./../../shared/material/material.module";
 import { DdoRoutingModule } from "./ddo.routing.module";
 import { NgModule } from "@angular/core";
@@ -27,6 +27,7 @@ import { DdoItemSelectComponent } from "./ddo-item/ddo-item-select/ddo-item-sele
     DdoRoutingModule,
     MaterialModule,
     FormsModule,
+    ReactiveFormsModule,
   ],
   providers: [DdoService],
 })

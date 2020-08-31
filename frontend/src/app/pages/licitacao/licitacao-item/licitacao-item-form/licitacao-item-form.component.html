@@ -1,46 +1,39 @@
 <mat-card class="titulo mat-elevation-z0">
   <div *ngIf="!licitacaoNovoItem; then updateTitle; else createTitle"></div>
   <ng-template #updateTitle>
-    <mat-card-title class="title">
-      Editar Item
-    </mat-card-title>
+    <mat-card-title class="title"> Editar Item </mat-card-title>
   </ng-template>
   <ng-template #createTitle>
-    <mat-card-title class="title">
-      Novo Item
-    </mat-card-title>
+    <mat-card-title class="title"> Novo Item </mat-card-title>
   </ng-template>
 </mat-card>
 
 <mat-card class="mat-elevation-z4">
-  <form>
+  <form [formGroup]="formulario">
     <mat-grid-list cols="1" rowHeight="200px">
       <mat-grid-tile>
         <div class="controles-container">
           <mat-form-field>
             <input
+              formControlName="num_licitacao_item"
               matInput
               placeholder="Número do Item"
               type="number"
-              [(ngModel)]="licitacaoItem.num_licitacao_item"
-              name="num_licitacao_item"
             />
           </mat-form-field>
           <mat-form-field>
             <input
+              formControlName="nome_licitacao_item"
               matInput
-              placeholder="Item"
-              [(ngModel)]="licitacaoItem.nome_licitacao_item"
-              name="nome_licitacao_item"
+              placeholder="Nome do Item"
             />
           </mat-form-field>
           <mat-form-field>
             <input
+              formControlName="valor"
               matInput
               placeholder="Valor"
               type="number"
-              [(ngModel)]="licitacaoItem.valor"
-              name="valor"
             />
           </mat-form-field>
         </div>
@@ -58,15 +51,14 @@
       <button
         *ngIf="licitacaoNovoItem"
         mat-raised-button
+        [disabled]="formulario.invalid"
         (click)="createItem()"
         color="primary"
       >
         Salvar
       </button>
 
-      <button mat-raised-button (click)="cancel()">
-        Cancelar
-      </button>
+      <button mat-raised-button (click)="cancel()">Cancelar</button>
     </div>
   </form>
 </mat-card>

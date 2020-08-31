@@ -1,25 +1,21 @@
 <mat-card class="titulo mat-elevation-z0">
   <div *ngIf="data; then updateTitle; else createTitle"></div>
   <ng-template #updateTitle>
-    <mat-card-title class="title">
-      Editar Documento de Oficialização de Demanda Orçamentária
-    </mat-card-title>
+    <mat-card-title class="title"> Editar DDO </mat-card-title>
   </ng-template>
   <ng-template #createTitle>
-    <mat-card-title class="title">
-      Novo Documento de Oficialização de Demanda Orçamentária
-    </mat-card-title>
+    <mat-card-title class="title"> Novo DDO </mat-card-title>
   </ng-template>
 </mat-card>
 
 <mat-card class="home mat-elevation-z4">
-  <form>
+  <form [formGroup]="formulario">
     <mat-grid-list cols="2" rowHeight="300px">
       <mat-grid-tile>
         <div class="controles-container">
           <mat-form-field>
             <mat-label>Ação da JT</mat-label>
-            <mat-select [(ngModel)]="ddo.id_acao" name="id_acao">
+            <mat-select formControlName="id_acao">
               <mat-option *ngFor="let acao of acoes" [value]="acao.id_acao">
                 {{ acao.nome }}
               </mat-option>
@@ -28,7 +24,7 @@
 
           <mat-form-field>
             <mat-label>Unidade Gestora</mat-label>
-            <mat-select [(ngModel)]="ddo.id_ug" name="id_ug">
+            <mat-select formControlName="id_ug">
               <mat-option *ngFor="let ug of ugs" [value]="ug.id_ug">
                 {{ ug.cod_ug }}
               </mat-option>
@@ -40,8 +36,7 @@
               matInput
               placeholder="Recurso Próprio"
               type="number"
-              [(ngModel)]="ddo.recurso_proprio"
-              name="recurso_proprio"
+              formControlName="recurso_proprio"
             />
           </mat-form-field>
 
@@ -50,8 +45,7 @@
               matInput
               placeholder="Vlr. Demandado"
               type="number"
-              [(ngModel)]="ddo.vlr_demandado"
-              name="vlr_demandado"
+              formControlName="vlr_demandado"
             />
           </mat-form-field>
         </div>
@@ -59,55 +53,31 @@
 
       <mat-grid-tile>
         <div class="controles-container">
-          <mat-checkbox [(ngModel)]="ddo.novo" name="novo" color="primary">
+          <mat-checkbox formControlName="novo" color="primary">
             Ação nova
           </mat-checkbox>
 
-          <mat-checkbox
-            [(ngModel)]="ddo.possui_dod"
-            name="possui_dod"
-            color="primary"
-          >
+          <mat-checkbox formControlName="possui_dod" color="primary">
             Possui DOD
           </mat-checkbox>
 
-          <mat-checkbox
-            [(ngModel)]="ddo.aprc_cgtic_local"
-            name="aprc_cgtic_local"
-            color="primary"
-          >
+          <mat-checkbox formControlName="aprc_cgtic_local" color="primary">
             Aprovado pelo CGTIC Local
           </mat-checkbox>
 
-          <mat-checkbox
-            [(ngModel)]="ddo.compr_liquidacao"
-            name="compr_liquidacao"
-            color="primary"
-          >
+          <mat-checkbox formControlName="compr_liquidacao" color="primary">
             Se compromete com a liquidação
           </mat-checkbox>
 
-          <mat-checkbox
-            [(ngModel)]="ddo.cronograma"
-            name="cronograma"
-            color="primary"
-          >
+          <mat-checkbox formControlName="cronograma" color="primary">
             Possui Cronograma
           </mat-checkbox>
 
-          <mat-checkbox
-            [(ngModel)]="ddo.ass_presidente"
-            name="ass_presidente"
-            color="primary"
-          >
+          <mat-checkbox formControlName="ass_presidente" color="primary">
             Assinado pelo Presidente
           </mat-checkbox>
 
-          <mat-checkbox
-            [(ngModel)]="ddo.po_local"
-            name="po_local"
-            color="primary"
-          >
+          <mat-checkbox formControlName="po_local" color="primary">
             Incluso no PO local
           </mat-checkbox>
         </div>
@@ -118,6 +88,7 @@
       <button
         *ngIf="data"
         mat-raised-button
+        [disabled]="formulario.invalid"
         (click)="updateDdo()"
         color="primary"
       >
@@ -126,15 +97,14 @@
       <button
         *ngIf="!data"
         mat-raised-button
+        [disabled]="formulario.invalid"
         (click)="createDdo()"
         color="primary"
       >
         Salvar
       </button>
 
-      <button mat-raised-button (click)="cancel()">
-        Cancelar
-      </button>
+      <button mat-raised-button (click)="cancel()">Cancelar</button>
     </div>
   </form>
 </mat-card>
