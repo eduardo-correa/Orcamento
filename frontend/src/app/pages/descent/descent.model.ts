@@ -13,4 +13,5 @@ export interface Descent {
   id_ddo?: number;
   vlr_aprovado?: number;
   identifica_ddo?: string;
+  count?: number;
 }

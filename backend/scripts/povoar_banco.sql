@@ -1712,6 +1712,68 @@ VALUES (
     4
   );
 
+-- DDO 13
+INSERT INTO
+  public.ddo (
+    id_ug,
+    id_acao,
+    novo,
+    recurso_proprio,
+    vlr_demandado,
+    aprc_cgtic_local,
+    possui_dod,
+    compr_liquidacao,
+    cronograma,
+    ass_presidente,
+    po_local,
+    id_usuario
+  )
+VALUES (
+    080014,
+    3,
+    false,
+    1500,
+    7350,
+    true,
+    true,
+    true,
+    true,
+    false,
+    true,
+    4
+  );
+
+-- DDO 14
+INSERT INTO
+  public.ddo (
+    id_ug,
+    id_acao,
+    novo,
+    recurso_proprio,
+    vlr_demandado,
+    aprc_cgtic_local,
+    possui_dod,
+    compr_liquidacao,
+    cronograma,
+    ass_presidente,
+    po_local,
+    id_usuario
+  )
+VALUES (
+    080015,
+    3,
+    false,
+    1500,
+    7350,
+    true,
+    true,
+    true,
+    true,
+    false,
+    true,
+    4
+  );
+
 
 
 ---------------------------
@@ -1973,6 +2035,48 @@ INSERT INTO public.ddo_item
   (id_ddo, id_licitacao, id_licitacao_item, qtd_demandada, elemento_despesa, id_usuario)
 VALUES (12, 12, 60, 500, '3.3.90.40.12', 2);
 
+-- DDO 13
+INSERT INTO public.ddo_item
+  (id_ddo, id_licitacao, id_licitacao_item, qtd_demandada, elemento_despesa, id_usuario)
+VALUES (13, 5, 21, 180, '3.3.90.40.12', 2 );
+
+INSERT INTO public.ddo_item
+  (id_ddo, id_licitacao, id_licitacao_item, qtd_demandada, elemento_despesa, id_usuario)
+VALUES (13, 5, 22, 150, '3.3.90.40.12', 2);
+
+INSERT INTO public.ddo_item
+  (id_ddo, id_licitacao, id_licitacao_item, qtd_demandada, elemento_despesa, id_usuario)
+VALUES (13, 5, 23, 50, '3.3.90.40.12', 2);
+
+INSERT INTO public.ddo_item
+  (id_ddo, id_licitacao, id_licitacao_item, qtd_demandada, elemento_despesa, id_usuario)
+VALUES (13, 5, 24, 30, '3.3.90.40.12', 2);
+
+INSERT INTO public.ddo_item
+  (id_ddo, id_licitacao, id_licitacao_item, qtd_demandada, elemento_despesa, id_usuario)
+VALUES (13, 5, 25, 500, '3.3.90.40.12', 2);
+
+-- DDO 14
+INSERT INTO public.ddo_item
+  (id_ddo, id_licitacao, id_licitacao_item, qtd_demandada, elemento_despesa, id_usuario)
+VALUES (14, 6, 26, 180, '3.3.90.40.12', 2 );
+
+INSERT INTO public.ddo_item
+  (id_ddo, id_licitacao, id_licitacao_item, qtd_demandada, elemento_despesa, id_usuario)
+VALUES (14, 6, 27, 150, '3.3.90.40.12', 2);
+
+INSERT INTO public.ddo_item
+  (id_ddo, id_licitacao, id_licitacao_item, qtd_demandada, elemento_despesa, id_usuario)
+VALUES (14, 6, 28, 50, '3.3.90.40.12', 2);
+
+INSERT INTO public.ddo_item
+  (id_ddo, id_licitacao, id_licitacao_item, qtd_demandada, elemento_despesa, id_usuario)
+VALUES (14, 6, 29, 30, '3.3.90.40.12', 2);
+
+INSERT INTO public.ddo_item
+  (id_ddo, id_licitacao, id_licitacao_item, qtd_demandada, elemento_despesa, id_usuario)
+VALUES (14, 6, 30, 500, '3.3.90.40.12', 2);
+
 
 ---------------------------------------
 -- carga da tabela PAE_DESCENTRALIZACAO
@@ -2112,7 +2216,7 @@ VALUES (
     2
   );
 
--- PAE-Descentralização 3
+-- PAE-Descentralização 3A
 INSERT INTO
   public.ddo_descentralizacao (
     id_pae_descentralizacao,
@@ -2133,7 +2237,28 @@ VALUES (
     1
   );
 
--- PAE-Descentralização 4
+-- PAE-Descentralização 3B
+INSERT INTO
+  public.ddo_descentralizacao (
+    id_pae_descentralizacao,
+    id_ddo,
+    qtd_aprovada,
+    vlr_aprovado,
+    reuniao_cgtic,
+    dt_aprov_cgtic,
+    id_usuario
+  )
+VALUES (
+    3,
+    13,
+    100,
+    25000,
+    '1ª Reunião do CGGTIC',
+    CURRENT_DATE,
+    1
+  );
+
+-- PAE-Descentralização 4A
 INSERT INTO
   public.ddo_descentralizacao (
     id_pae_descentralizacao,
@@ -2149,7 +2274,28 @@ VALUES (
     6,
     100,
     25000,
-    '1ª Reunião do CGGTIC',
+    '2ª Reunião do CGGTIC',
+    CURRENT_DATE,
+    1
+  );
+
+-- PAE-Descentralização 4B
+INSERT INTO
+  public.ddo_descentralizacao (
+    id_pae_descentralizacao,
+    id_ddo,
+    qtd_aprovada,
+    vlr_aprovado,
+    reuniao_cgtic,
+    dt_aprov_cgtic,
+    id_usuario
+  )
+VALUES (
+    4,
+    14,
+    100,
+    25000,
+    '2ª Reunião do CGGTIC',
     CURRENT_DATE,
     1
   );
@@ -2276,7 +2422,7 @@ VALUES (
     12,
     100,
     25000,
-    '1ª Reunião do CGGTIC',
+    '2ª Reunião do CGGTIC',
     CURRENT_DATE,
     1
   );

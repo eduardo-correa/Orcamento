@@ -390,6 +390,7 @@ SELECT
   pae.id_pae_descentralizacao,
   pae.num_processo,
   pae.ord_descentralizacao,
+  acao.id_acao,
   acao.nome AS nome_acao,
   ug.cod_ug AS nome_ug,
   d_ddo.reuniao_cgtic,

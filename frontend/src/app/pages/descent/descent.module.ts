@@ -1,3 +1,4 @@
+import { DescentDadosService } from "./descent-dados.service";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { MaterialModule } from "./../../shared/material/material.module";
 import { DescentService } from "./descent.service";
@@ -21,6 +22,6 @@ import { DescentFormUpdateComponent } from "./descent-form-update/descent-form-u
     FormsModule,
     ReactiveFormsModule,
   ],
-  providers: [DescentService],
+  providers: [DescentService, DescentDadosService],
 })
 export class DescentModule {}
