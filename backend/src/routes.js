@@ -8,7 +8,7 @@ const LicitacaoItemController = require("./controllers/LicitacaoItemController")
 const DDOController = require("./controllers/DDOController");
 const DDOItemController = require("./controllers/DDOItemController");
 const DescentController = require("./controllers/DescentController");
-const DescentDadosController = require("./controllers/DescentDadosController");
+const DescentPaeController = require("./controllers/DescentPaeController");
 const DdoDescentController = require("./controllers/DdoDescentController");
 const NtCreditoController = require("./controllers/NotaCreditoController");
 
@@ -84,9 +84,13 @@ routes.post("/ddodescentralizacao", DdoDescentController.create);
 routes.delete("/ddodescentralizacao/:id", DdoDescentController.delete);
 routes.put("/ddodescentralizacao/:id", DdoDescentController.update);
 
-// Dados da Descentralização - Para exibição no frontend
-routes.get("/descentdados", DescentDadosController.list);
-routes.get("/descentdados/acao/:id", DescentDadosController.findByAcao);
+// Dados da PAE Descentralização
+routes.get("/descentpae", DescentPaeController.list);
+routes.get("/descentpae/acao/:id", DescentPaeController.findByAcao);
+routes.get("/descentpae/:id", DescentPaeController.find);
+routes.post("/descentpae", DescentPaeController.create);
+routes.delete("/descentpae/:id", DescentPaeController.delete);
+routes.put("/descentpae/:id", DescentPaeController.update);
 
 // Nota de crédito
 routes.get("/nt_credito", NtCreditoController.list);

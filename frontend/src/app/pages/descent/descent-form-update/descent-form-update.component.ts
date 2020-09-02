@@ -19,6 +19,7 @@ export class DescentFormUpdateComponent implements OnInit {
     "5ª Descentralização",
   ];
   paeDescentralizado: Descent = {
+    id_acao: null,
     num_processo: "",
     ord_descentralizacao: null,
     id_usuario: null,

@@ -192,12 +192,14 @@ COMMENT ON COLUMN ddo_item.id_usuario IS 'Usuário do sistema responsável pela 
 -------------------------------------
 CREATE TABLE public.pae_descentralizacao (
   id_pae_descentralizacao SERIAL NOT NULL PRIMARY KEY,
+  id_acao INTEGER NOT NULL REFERENCES acao(id_acao) ON DELETE CASCADE,
   num_processo VARCHAR NOT NULL,
   ord_descentralizacao VARCHAR NOT NULL,
   id_usuario INTEGER NOT NULL REFERENCES usuario(id_usuario)
 );
 COMMENT ON TABLE pae_descentralizacao IS 'Tabela de informações das descentralizações cadastradas em um PAE';
 COMMENT ON COLUMN pae_descentralizacao.id_pae_descentralizacao IS 'Identificação da descentralização, criada automaticamente';
+COMMENT ON COLUMN pae_descentralizacao.id_acao IS 'Identificação da Ação a qual a Descentralização pertence';
 COMMENT ON COLUMN pae_descentralizacao.num_processo IS 'Identificação do Processo Administrativo que trata a descentralização';
 COMMENT ON COLUMN pae_descentralizacao.ord_descentralizacao IS 'Quando existe mais de uma descentralização por PAE, este campo define a ordem das descentralizações';
 COMMENT ON COLUMN pae_descentralizacao.id_usuario IS 'Usuário do sistema responsável pela última alteração';
@@ -381,6 +383,24 @@ WHERE
 	licitacao.id_acao = acao.id_acao AND
 	licitacao.id_ug = ug.id_ug AND
   licitacao.ativa;
+
+
+------------------------------------------------
+-- View para exibir os dados da Descentralização
+------------------------------------------------
+CREATE VIEW descentpae_dados AS
+SELECT
+  pae.id_pae_descentralizacao,
+  pae.num_processo,
+  pae.ord_descentralizacao,
+  acao.id_acao,
+  acao.nome AS nome_acao
+FROM
+  public.pae_descentralizacao pae,
+  public.acao
+WHERE
+  pae.id_acao = acao.id_acao;
+
 
 ------------------------------------------------
 -- View para exibir os dados da Descentralização

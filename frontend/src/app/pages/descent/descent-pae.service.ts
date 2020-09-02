@@ -8,8 +8,8 @@ import { map, catchError } from "rxjs/operators";
 @Injectable({
   providedIn: "root",
 })
-export class DescentDadosService {
-  baseUrl = "http://localhost:3333/descentdados";
+export class DescentPaeService {
+  baseUrl = "http://localhost:3333/descentpae";
   headers = new HttpHeaders().set("Authorization", "1");
 
   constructor(private http: HttpClient, private snackBar: MatSnackBar) {}
@@ -39,6 +39,41 @@ export class DescentDadosService {
   readByAcao(idAcao: number): Observable<Descent[]> {
     const url = `${this.baseUrl}/acao/${idAcao}`;
     return this.http.get<Descent[]>(url).pipe(
+      map((obj) => obj),
+      catchError((e) => this.errorHandler(e))
+    );
+  }
+
+  create(decentPAE: Descent): Observable<Descent> {
+    return this.http
+      .post<Descent>(this.baseUrl, decentPAE, { headers: this.headers })
+      .pipe(
+        map((obj) => obj),
+        catchError((e) => this.errorHandler(e))
+      );
+  }
+
+  readById(idPaeDescent: number): Observable<Descent> {
+    const url = `${this.baseUrl}/${idPaeDescent}`;
+    return this.http.get<Descent>(url).pipe(
+      map((obj) => obj),
+      catchError((e) => this.errorHandler(e))
+    );
+  }
+
+  update(paeDescentUpdate: Descent): Observable<Descent> {
+    const url = `${this.baseUrl}/${paeDescentUpdate.id_pae_descentralizacao}`;
+    return this.http
+      .put<Descent>(url, paeDescentUpdate, { headers: this.headers })
+      .pipe(
+        map((obj) => obj),
+        catchError((e) => this.errorHandler(e))
+      );
+  }
+
+  delete(id: number): Observable<Descent> {
+    const url = `${this.baseUrl}/${id}`;
+    return this.http.delete<Descent>(url).pipe(
       map((obj) => obj),
       catchError((e) => this.errorHandler(e))
     );

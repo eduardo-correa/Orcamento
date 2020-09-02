@@ -1,8 +1,9 @@
 export interface Descent {
   // Campos da tabela PAE_DESCENTRALIZACAO
   id_pae_descentralizacao?: number;
+  id_acao: number;
   num_processo: string;
-  ord_descentralizacao: number;
+  ord_descentralizacao: string;
   id_usuario?: number;
 
   // Campos da view DESCENT_DADOS

@@ -2082,51 +2082,51 @@ VALUES (14, 6, 30, 500, '3.3.90.40.12', 2);
 -- carga da tabela PAE_DESCENTRALIZACAO
 ---------------------------------------
 INSERT INTO public.pae_descentralizacao (
-    num_processo, ord_descentralizacao, id_usuario
+    id_acao, num_processo, ord_descentralizacao, id_usuario
   )
-VALUES ('500.250/2020-5', '1ª Descentralização', 1);
+VALUES (1, '500.250/2020-5', '1ª Descentralização', 1);
 
 INSERT INTO public.pae_descentralizacao (
-    num_processo, ord_descentralizacao, id_usuario
+    id_acao, num_processo, ord_descentralizacao, id_usuario
   )
 VALUES
-  ('501.254/2020-4', '1ª Descentralização', 1);
+  (2, '501.254/2020-4', '1ª Descentralização', 1);
 
 INSERT INTO public.pae_descentralizacao (
-    num_processo, ord_descentralizacao, id_usuario
+    id_acao, num_processo, ord_descentralizacao, id_usuario
   )
 VALUES
-  ('502.255/2020-3', '1ª Descentralização', 2);
+  (3, '502.255/2020-3', '1ª Descentralização', 2);
 
 INSERT INTO public.pae_descentralizacao (
-    num_processo, ord_descentralizacao, id_usuario
+    id_acao, num_processo, ord_descentralizacao, id_usuario
   )
 VALUES
-  ('502.255/2020-3', '2ª Descentralização', 2);
+  (3, '502.255/2020-3', '2ª Descentralização', 2);
 
 INSERT INTO public.pae_descentralizacao (
-    num_processo, ord_descentralizacao, id_usuario
+    id_acao, num_processo, ord_descentralizacao, id_usuario
   )
 VALUES
-  ('503.256/2020-2', '1ª Descentralização', 3);
+  (4, '503.256/2020-2', '1ª Descentralização', 3);
 
 INSERT INTO public.pae_descentralizacao (
-    num_processo, ord_descentralizacao, id_usuario
+    id_acao, num_processo, ord_descentralizacao, id_usuario
   )
 VALUES
-  ('504.257/2020-1', '1ª Descentralização', 4);
+  (5, '504.257/2020-1', '1ª Descentralização', 4);
 
 INSERT INTO public.pae_descentralizacao (
-    num_processo, ord_descentralizacao, id_usuario
+    id_acao, num_processo, ord_descentralizacao, id_usuario
   )
 VALUES
-  ('505.260/2020-0', '1ª Descentralização', 3);
+  (6, '505.260/2020-0', '1ª Descentralização', 3);
 
 INSERT INTO public.pae_descentralizacao (
-    num_processo, ord_descentralizacao, id_usuario
+    id_acao, num_processo, ord_descentralizacao, id_usuario
   )
 VALUES
-  ('505.260/2020-0', '2ª Descentralização', 3);
+  (6, '505.260/2020-0', '2ª Descentralização', 3);
 
 
 ----------------------------------------
