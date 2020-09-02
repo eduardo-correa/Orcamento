@@ -1,5 +1,5 @@
 // Tabela DDO_DESCENTRALIZACAO
-export interface DdoDescent {
+export interface DescentDdo {
   id_ddo_descentralizacao?: number;
   id_pae_descentralizacao: number;
   id_ddo: number;

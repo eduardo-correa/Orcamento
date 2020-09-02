@@ -1,0 +1,61 @@
+.full-width-table {
+  width: 100%;
+}
+
+.titulo .ttile {
+  font-size: 3rem;
+  font-weight: 300;
+  line-height: 1.2;
+}
+
+.titulo .subtitle {
+  font-size: 1.1rem;
+  line-height: 1.2;
+  padding-top: 5px;
+}
+
+.titulo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.botao {
+  margin: 8px 0px 15px 0px;
+}
+
+.delete > i {
+  color: #e35e6b;
+}
+
+.edit {
+  color: #d9cd26;
+  vertical-align: middle;
+}
+
+.delete {
+  color: #e35e6b;
+  vertical-align: middle;
+}
+
+.adicionar {
+  margin-top: 15px;
+  text-align: right;
+}
+
+.voltar {
+  margin-left: 10px;
+  color: #1d3557;
+}
+
+.search-div {
+  margin: 10px;
+  display: flex;
+  flex-direction: row;
+}
+
+.search-form-field {
+  width: 70%;
+  margin-left: 10px;
+  padding: 5px 10px;
+}

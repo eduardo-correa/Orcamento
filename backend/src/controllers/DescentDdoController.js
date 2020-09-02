@@ -13,7 +13,7 @@ module.exports = {
     } = request.body;
     const id_usuario = request.headers.authorization;
 
-    const [DdoDescentralizacao] = await connection("ddo_descentralizacao")
+    const [DescentDdo] = await connection("ddo_descentralizacao")
       .returning("id_ddo_descentralizacao")
       .insert({
         id_pae_descentralizacao: id_pae_descentralizacao,
@@ -25,20 +25,20 @@ module.exports = {
         id_usuario: id_usuario,
       });
 
-    return response.json({ DdoDescentralizacao });
+    return response.json({ DescentDdo });
   },
 
   // List
   async list(request, response) {
-    const DdoDescent = await connection("ddo_descentralizacao").select("*");
-    return response.json(DdoDescent);
+    const DescentDdo = await connection("descentddo_dados").select("*");
+    return response.json(DescentDdo);
   },
 
   // Find
   async find(request, response) {
     const { id } = request.params;
 
-    const DdoDescent = await connection("ddo_descentralizacao")
+    const DdoDescent = await connection("descentddo_dados")
       .where({
         id_ddo_descentralizacao: id,
       })
@@ -70,7 +70,7 @@ module.exports = {
     const id_usuario = request.headers.authorization;
     const { id } = request.params;
 
-    const [DdoDescent] = await connection("ddo_descentralizacao")
+    const [DescentDdo] = await connection("ddo_descentralizacao")
       .returning("id_ddo_descentralizacao")
       .where({
         id_ddo_descentralizacao: id,
@@ -84,6 +84,6 @@ module.exports = {
         dt_aprov_cgtic: dt_aprov_cgtic,
         id_usuario: id_usuario,
       });
-    return response.json({ DdoDescent });
+    return response.json({ DescentDdo });
   },
 };

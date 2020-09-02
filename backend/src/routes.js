@@ -9,7 +9,7 @@ const DDOController = require("./controllers/DDOController");
 const DDOItemController = require("./controllers/DDOItemController");
 const DescentController = require("./controllers/DescentController");
 const DescentPaeController = require("./controllers/DescentPaeController");
-const DdoDescentController = require("./controllers/DdoDescentController");
+const DescentDdoController = require("./controllers/DescentDdoController");
 const NtCreditoController = require("./controllers/NotaCreditoController");
 
 const routes = express.Router();
@@ -77,14 +77,14 @@ routes.post("/descentralizacao", DescentController.create);
 routes.delete("/descentralizacao/:id", DescentController.delete);
 routes.put("/descentralizacao/:id", DescentController.update);
 
-// Proc Descentralização
-routes.get("/ddodescentralizacao", DdoDescentController.list);
-routes.get("/ddodescentralizacao/:id", DdoDescentController.find);
-routes.post("/ddodescentralizacao", DdoDescentController.create);
-routes.delete("/ddodescentralizacao/:id", DdoDescentController.delete);
-routes.put("/ddodescentralizacao/:id", DdoDescentController.update);
+// DDO Descentralização
+routes.get("/descentddo", DescentDdoController.list);
+routes.get("/descentddo/:id", DescentDdoController.find);
+routes.post("/descentddo", DescentDdoController.create);
+routes.delete("/descentddo/:id", DescentDdoController.delete);
+routes.put("/descentddo/:id", DescentDdoController.update);
 
-// Dados da PAE Descentralização
+// PAE Descentralização
 routes.get("/descentpae", DescentPaeController.list);
 routes.get("/descentpae/acao/:id", DescentPaeController.findByAcao);
 routes.get("/descentpae/:id", DescentPaeController.find);

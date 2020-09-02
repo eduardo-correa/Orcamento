@@ -385,9 +385,9 @@ WHERE
   licitacao.ativa;
 
 
-------------------------------------------------
--- View para exibir os dados da Descentralização
-------------------------------------------------
+----------------------------------------------------
+-- View para exibir os dados de PAE-Descentralização
+----------------------------------------------------
 CREATE VIEW descentpae_dados AS
 SELECT
   pae.id_pae_descentralizacao,
@@ -402,12 +402,13 @@ WHERE
   pae.id_acao = acao.id_acao;
 
 
-------------------------------------------------
--- View para exibir os dados da Descentralização
-------------------------------------------------
-CREATE VIEW descent_dados AS
+----------------------------------------------------
+-- View para exibir os dados de DDO-Descentralização
+----------------------------------------------------
+CREATE VIEW descentddo_dados AS
 SELECT
   pae.id_pae_descentralizacao,
+  d_ddo.id_ddo_descentralizacao,
   pae.num_processo,
   pae.ord_descentralizacao,
   acao.id_acao,
