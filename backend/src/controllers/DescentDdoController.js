@@ -46,6 +46,18 @@ module.exports = {
     return response.json(DdoDescent);
   },
 
+  // Find By PAE
+  async findByPae(request, response) {
+    const { id } = request.params;
+
+    const DdoDescent = await connection("descentddo_dados")
+      .where({
+        id_pae_descentralizacao: id,
+      })
+      .select("*");
+    return response.json(DdoDescent);
+  },
+
   // Delete
   async delete(request, response) {
     const { id } = request.params;

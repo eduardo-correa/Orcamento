@@ -416,6 +416,7 @@ SELECT
   ug.cod_ug AS nome_ug,
   d_ddo.reuniao_cgtic,
   d_ddo.dt_aprov_cgtic,
+  d_ddo.qtd_aprovada,
   d_ddo.id_ddo,
   d_ddo.vlr_aprovado,
   concat_ws('-', ug.cod_ug, acao.nome) as identifica_ddo
