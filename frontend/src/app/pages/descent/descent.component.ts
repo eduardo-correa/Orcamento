@@ -70,20 +70,21 @@ export class DescentComponent implements OnInit {
 
   deleteDescent(id: number): void {
     if (confirm("Tem certeza que deseja excluir este PAE? ")) {
+      this.atualizarPesquisa(id);
       this.paeService.delete(id).subscribe(() => {
         this.paeService.showMessage("Pae da descentralização excluído.");
       });
-      this.limparPesquisa();
     }
   }
 
-  limparPesquisa(): void {
-    this.searchKey = null;
-    this.buscaDescents(0);
-  }
+  // limparPesquisa(): void {
+  //   this.searchKey = null;
+  //   this.buscaDescents(0);
+  // }
 
   atualizarPesquisa(idDescent: number): void {
     this.paeService.readById(idDescent).subscribe((retorno) => {
+      this.searchKey = retorno[0].nome_acao;
       this.buscaDescents(retorno[0].id_acao);
     });
   }

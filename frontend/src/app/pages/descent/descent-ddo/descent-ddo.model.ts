@@ -14,5 +14,6 @@ export interface DescentDdo {
   ord_descentralizacao?: string;
   id_acao?: number;
   nome_acao?: string;
+  nome_ug?: string;
   identifica_ddo?: string;
 }
