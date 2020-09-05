@@ -1,3 +1,4 @@
+import { DescentDdoUpdateComponent } from "./../descent-ddo-update/descent-ddo-update.component";
 import { DescentDdoFormComponent } from "./../descent-ddo-form/descent-ddo-form.component";
 import { DescentDdoService } from "./../descent-ddo.service";
 import { ActivatedRoute } from "@angular/router";
@@ -82,7 +83,22 @@ export class DescentDdoListComponent implements OnInit {
     });
   }
 
-  updateItem(idItem: number): void {}
+  updateItem(idItem: number): void {
+    const dialogConfig = new MatDialogConfig();
+    dialogConfig.disableClose = true;
+    dialogConfig.autoFocus = true;
+    dialogConfig.width = "50%";
+    dialogConfig.data = {
+      itemUpdate: idItem,
+    };
+    const dialogRef = this.dialogForm.open(
+      DescentDdoUpdateComponent,
+      dialogConfig
+    );
+    dialogRef.afterClosed().subscribe((result) => {
+      this.carregarDados();
+    });
+  }
 
   deleteItem(idItem: number): void {
     if (
@@ -93,5 +109,14 @@ export class DescentDdoListComponent implements OnInit {
         this.carregarDados();
       });
     }
+  }
+
+  pesquisar(): void {
+    this.ddoItens.filter = this.searchKey.trim().toLowerCase();
+  }
+
+  limparPesquisa(): void {
+    this.searchKey = "";
+    this.pesquisar();
   }
 }

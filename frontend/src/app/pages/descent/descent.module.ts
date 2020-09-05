@@ -9,6 +9,7 @@ import { DescentFormComponent } from "./descent-form/descent-form.component";
 import { DescentDdoListComponent } from "./descent-ddo/descent-ddo-list/descent-ddo-list.component";
 import { DescentDdoService } from "./descent-ddo/descent-ddo.service";
 import { DescentDdoFormComponent } from './descent-ddo/descent-ddo-form/descent-ddo-form.component';
+import { DescentDdoUpdateComponent } from './descent-ddo/descent-ddo-update/descent-ddo-update.component';
 
 @NgModule({
   declarations: [
@@ -16,6 +17,7 @@ import { DescentDdoFormComponent } from './descent-ddo/descent-ddo-form/descent-
     DescentFormComponent,
     DescentDdoListComponent,
     DescentDdoFormComponent,
+    DescentDdoUpdateComponent,
   ],
   imports: [
     CommonModule,
