@@ -1,5 +1,5 @@
 import { DescentDdoUpdateComponent } from "./../descent-ddo-update/descent-ddo-update.component";
-import { DescentDdoFormComponent } from "./../descent-ddo-form/descent-ddo-form.component";
+import { DescentDdoCreateComponent } from "./../descent-ddo-create/descent-ddo-create.component";
 import { DescentDdoService } from "./../descent-ddo.service";
 import { ActivatedRoute } from "@angular/router";
 import { MatTableDataSource } from "@angular/material/table";
@@ -73,7 +73,7 @@ export class DescentDdoListComponent implements OnInit {
       idPae: this.descentDdo.id_pae_descentralizacao,
     };
     const dialogRef = this.dialogForm.open(
-      DescentDdoFormComponent,
+      DescentDdoCreateComponent,
       dialogConfig
     );
     dialogRef.afterClosed().subscribe((retorno) => {

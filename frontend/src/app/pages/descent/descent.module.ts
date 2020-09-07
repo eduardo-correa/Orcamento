@@ -8,15 +8,15 @@ import { CommonModule } from "@angular/common";
 import { DescentFormComponent } from "./descent-form/descent-form.component";
 import { DescentDdoListComponent } from "./descent-ddo/descent-ddo-list/descent-ddo-list.component";
 import { DescentDdoService } from "./descent-ddo/descent-ddo.service";
-import { DescentDdoFormComponent } from './descent-ddo/descent-ddo-form/descent-ddo-form.component';
-import { DescentDdoUpdateComponent } from './descent-ddo/descent-ddo-update/descent-ddo-update.component';
+import { DescentDdoUpdateComponent } from "./descent-ddo/descent-ddo-update/descent-ddo-update.component";
+import { DescentDdoCreateComponent } from "./descent-ddo/descent-ddo-create/descent-ddo-create.component";
 
 @NgModule({
   declarations: [
     DescentComponent,
     DescentFormComponent,
     DescentDdoListComponent,
-    DescentDdoFormComponent,
+    DescentDdoCreateComponent,
     DescentDdoUpdateComponent,
   ],
   imports: [
