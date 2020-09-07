@@ -1,13 +1,73 @@
 <mat-card class="titulo mat-elevation-z0">
   <mat-card-title class="title"> Itens da Descentralização </mat-card-title>
-  <mat-card-subtitle class="subtitle">
-    Definição dos DDOs que fazem parte desta descentralização
-  </mat-card-subtitle>
+  <mat-card-subtitle class="subtitle"> Adicionar DDO ao PAE </mat-card-subtitle>
 </mat-card>
 
-<button mat-raised-button mat-dialog-close>Cancelar</button>
-<div>
-  <pre>
-    {{ data | json }}
-  </pre>
-</div>
+<mat-card class="mat-elevation-z4">
+  <form [formGroup]="formulario">
+    <mat-grid-list cols="2" rowHeight="300">
+      <!-- Primeira coluna -->
+      <mat-grid-tile>
+        <div class="controles-container">
+          <mat-form-field>
+            <mat-label>DDO</mat-label>
+            <mat-select (selectionChange)="escolheDdo($event.value)">
+              <mat-option *ngFor="let item of ddoAcao" [value]="item.id_ddo">
+                {{ item.identifica_ddo }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+          <mat-form-field>
+            <input
+              type="number"
+              formControlName="qtd_aprovada"
+              matInput
+              placeholder="Quantidade aprovada"
+            />
+          </mat-form-field>
+          <mat-form-field>
+            <input
+              type="number"
+              formControlName="vlr_aprovado"
+              matInput
+              placeholder="Valor aprovado"
+            />
+          </mat-form-field>
+        </div>
+      </mat-grid-tile>
+      <!-- Segunda coluna -->
+      <mat-grid-tile>
+        <div class="controles-container">
+          <mat-form-field>
+            <mat-label>Reunião CGTIC</mat-label>
+            <mat-select formControlName="reuniao_cgtic">
+              <mat-option *ngFor="let reuniao of reunioes" [value]="reuniao">
+                {{ reuniao }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+          <mat-form-field>
+            <mat-label>Aprovado em</mat-label>
+            <input
+              matInput
+              [matDatepicker]="picker"
+              formControlName="dt_aprov_cgtic"
+            />
+            <mat-datepicker-toggle
+              matSuffix
+              [for]="picker"
+            ></mat-datepicker-toggle>
+            <mat-datepicker #picker color="primary"></mat-datepicker>
+          </mat-form-field>
+          <div class="button-row">
+            <button mat-raised-button (click)="createItem()" color="primary">
+              Adicionar
+            </button>
+
+            <button mat-raised-button mat-dialog-close>Cancelar</button>
+          </div>
+        </div>
+      </mat-grid-tile>
+    </mat-grid-list>
+  </form>
+</mat-card>

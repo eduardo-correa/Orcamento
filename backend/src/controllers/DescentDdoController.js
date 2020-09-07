@@ -58,6 +58,18 @@ module.exports = {
     return response.json(DdoDescent);
   },
 
+  // Find By Ação
+  async findByAcao(request, response) {
+    const { id } = request.params;
+
+    const DdoDescent = await connection("ddo_acoes")
+      .where({
+        id_acao: id,
+      })
+      .select("*");
+    return response.json(DdoDescent);
+  },
+
   // Delete
   async delete(request, response) {
     const { id } = request.params;

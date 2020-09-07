@@ -419,7 +419,7 @@ SELECT
   d_ddo.qtd_aprovada,
   d_ddo.id_ddo,
   d_ddo.vlr_aprovado,
-  concat_ws('-', ug.cod_ug, acao.nome) as identifica_ddo
+  concat_ws(' - ', ug.cod_ug, acao.nome) as identifica_ddo
 FROM
   public.pae_descentralizacao pae,
   public.ddo,
@@ -431,6 +431,23 @@ WHERE
   ddo.id_ug = ug.id_ug AND
   ddo.id_acao = acao.id_acao AND
   pae.id_pae_descentralizacao = d_ddo.id_pae_descentralizacao;
+
+
+------------------------------------
+-- View para exibir os DDOs por Ação
+------------------------------------
+CREATE VIEW ddo_acoes AS
+SELECT
+  concat_ws(' - ', ug.cod_ug, acao.nome) AS identifica_ddo,
+  ddo.id_ddo,
+  acao.id_acao
+FROM
+  ddo, unidade_gestora ug, acao
+WHERE
+  ddo.id_acao = acao.id_acao AND ddo.id_ug = ug.id_ug
+ORDER BY acao.id_acao;
+
+
 
 -----------------------------------------------
 -- View para exibir os dados da Nota de Crédito

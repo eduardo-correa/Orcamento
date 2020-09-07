@@ -81,6 +81,7 @@ routes.put("/descentralizacao/:id", DescentController.update);
 routes.get("/descentddo", DescentDdoController.list);
 routes.get("/descentddo/:id", DescentDdoController.find);
 routes.get("/descentddo/pae/:id", DescentDdoController.findByPae);
+routes.get("/descentddo/acao/:id", DescentDdoController.findByAcao);
 routes.post("/descentddo", DescentDdoController.create);
 routes.delete("/descentddo/:id", DescentDdoController.delete);
 routes.put("/descentddo/:id", DescentDdoController.update);

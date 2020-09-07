@@ -55,6 +55,14 @@ export class DescentDdoService {
     );
   }
 
+  readByAcao(idAcao: number): Observable<any[]> {
+    const url = `${this.baseUrl}/acao/${idAcao}`;
+    return this.http.get<any[]>(url).pipe(
+      map((obj) => obj),
+      catchError((e) => this.errorHandler(e))
+    );
+  }
+
   update(descentUpdate: DescentDdo): Observable<DescentDdo> {
     const url = `${this.baseUrl}/${descentUpdate.id_ddo_descentralizacao}`;
     return this.http

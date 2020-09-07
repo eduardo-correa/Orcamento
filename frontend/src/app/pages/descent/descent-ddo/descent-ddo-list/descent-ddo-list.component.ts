@@ -71,15 +71,14 @@ export class DescentDdoListComponent implements OnInit {
     dialogConfig.width = "50%";
     dialogConfig.data = {
       idPae: this.descentDdo.id_pae_descentralizacao,
+      idAcao: this.descentDdo.id_acao,
     };
     const dialogRef = this.dialogForm.open(
       DescentDdoCreateComponent,
       dialogConfig
     );
-    dialogRef.afterClosed().subscribe((retorno) => {
-      if (retorno) {
-        console.log(retorno);
-      }
+    dialogRef.afterClosed().subscribe(() => {
+      this.carregarDados();
     });
   }
 
