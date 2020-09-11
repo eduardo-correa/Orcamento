@@ -15,10 +15,9 @@ export class NotaCreditoFormComponent implements OnInit {
   formulario: FormGroup;
   ntCredito: NC = {
     num_nota_credito: "",
-    id_descentralizacao: null,
+    id_ddo_descentralizacao: null,
     valor: null,
     dt_nota_credito: null,
-    ug_favorecida: null,
   };
 
   ugs: Ug[] = null;

@@ -2433,55 +2433,56 @@ VALUES (
 -------------------------------
 INSERT INTO
   public.nota_credito (
-    num_nota_credito,
-    id_ddo_descentralizacao,
-    valor,
-    dt_nota_credito,
-    id_usuario
+    gnd, num_nota_credito, id_acao, id_ug, valor, dt_nota_credito, id_usuario
   )
 VALUES
-  ('2020NC000824', 1, 600, CURRENT_DATE, 1);
+  (3, '2020NC000824', 1, 080001, 600, CURRENT_DATE, 1);
 
 INSERT INTO
   public.nota_credito (
-    num_nota_credito,
-    id_ddo_descentralizacao,
-    valor,
-    dt_nota_credito,
-    id_usuario
+    gnd, num_nota_credito, id_acao, id_ug, valor, dt_nota_credito, id_usuario
   )
 VALUES
-  ('2020NC000830', 2, 500, CURRENT_DATE, 1);
+  (3, '2020NC000830', 2, 080002, 500, CURRENT_DATE, 1);
 
 INSERT INTO
   public.nota_credito (
-    num_nota_credito,
-    id_ddo_descentralizacao,
-    valor,
-    dt_nota_credito,
-    id_usuario
+    gnd, num_nota_credito, id_acao, id_ug, valor, dt_nota_credito, id_usuario
   )
 VALUES
-  ('2020NC000833', 3, 400, CURRENT_DATE, 2);
+  (4, '2020NC000833', 3, 080003, 400, CURRENT_DATE, 2);
 
 INSERT INTO
   public.nota_credito (
-    num_nota_credito,
-    id_ddo_descentralizacao,
-    valor,
-    dt_nota_credito,
-    id_usuario
+    gnd, num_nota_credito, id_acao, id_ug, valor, dt_nota_credito, id_usuario
   )
 VALUES
-  ('2020NC000841', 4, 300, CURRENT_DATE, 3);
+  (3, '2020NC000841', 4, 080004, 300, CURRENT_DATE, 3);
 
 INSERT INTO
   public.nota_credito (
-    num_nota_credito,
-    id_ddo_descentralizacao,
-    valor,
-    dt_nota_credito,
-    id_usuario
+    gnd, num_nota_credito, id_acao, id_ug, valor, dt_nota_credito, id_usuario
   )
 VALUES
-  ('2020NC000859', 5, 200, CURRENT_DATE, 4);
+  (4, '2020NC000859', 5, 080005, 200, CURRENT_DATE, 4);
+
+INSERT INTO
+  public.nota_credito (
+    gnd, num_nota_credito, id_acao, id_ug, valor, dt_nota_credito, id_usuario
+  )
+VALUES
+  (4, '2020NC000775', 2, 080006, 350, CURRENT_DATE, 4);
+
+INSERT INTO
+  public.nota_credito (
+    gnd, num_nota_credito, id_acao, id_ug, valor, dt_nota_credito, id_usuario
+  )
+VALUES
+  (3, '2020NC000662', 3, 080007, 2000, CURRENT_DATE, 2);
+
+INSERT INTO
+  public.nota_credito (
+    gnd, num_nota_credito, id_acao, id_ug, valor, dt_nota_credito, id_usuario
+  )
+VALUES
+  (3, '2020NC000987', 1, 080007, 2300, CURRENT_DATE, 3);

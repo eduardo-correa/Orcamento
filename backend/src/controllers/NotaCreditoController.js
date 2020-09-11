@@ -5,7 +5,9 @@ module.exports = {
   async create(request, response) {
     const {
       num_nota_credito,
-      id_ddo_descentralizacao,
+      gnd,
+      id_acao,
+      id_ug,
       valor,
       dt_nota_credito,
     } = request.body;
@@ -15,7 +17,9 @@ module.exports = {
       .returning("id_nota_credito")
       .insert({
         num_nota_credito: num_nota_credito,
-        id_ddo_descentralizacao: id_ddo_descentralizacao,
+        gnd: gnd,
+        id_acao: id_acao,
+        id_ug: id_ug,
         valor: valor,
         dt_nota_credito: dt_nota_credito,
         id_usuario: id_usuario,
@@ -55,7 +59,9 @@ module.exports = {
   async update(request, response) {
     const {
       num_nota_credito,
-      id_ddo_descentralizacao,
+      gnd,
+      id_acao,
+      id_ug,
       valor,
       dt_nota_credito,
     } = request.body;
@@ -69,7 +75,9 @@ module.exports = {
       })
       .update({
         num_nota_credito: num_nota_credito,
-        id_ddo_descentralizacao: id_ddo_descentralizacao,
+        gnd: gnd,
+        id_acao: id_acao,
+        id_ug: id_ug,
         valor: valor,
         dt_nota_credito: dt_nota_credito,
         id_usuario: id_usuario,

@@ -235,17 +235,21 @@ COMMENT ON COLUMN ddo_descentralizacao.id_usuario IS 'Usuário do sistema respon
 CREATE TABLE public.nota_credito (
   id_nota_credito SERIAL NOT NULL PRIMARY KEY,
   num_nota_credito VARCHAR NOT NULL,
-  id_ddo_descentralizacao INTEGER NOT NULL REFERENCES ddo_descentralizacao(id_ddo_descentralizacao) ON DELETE CASCADE,
+  gnd SMALLINT NOT NULL,
+  id_acao INTEGER NOT NULL REFERENCES acao(id_acao) ON DELETE CASCADE,
+  id_ug INTEGER NOT NULL REFERENCES unidade_gestora(id_ug) ON DELETE CASCADE,
   valor DECIMAL(12,2) NOT NULL,
   dt_nota_credito DATE NOT NULL,
   id_usuario INTEGER NOT NULL REFERENCES usuario(id_usuario)
 );
 COMMENT ON TABLE nota_credito IS 'Tabela de informações das Notas de Crédito';
-COMMENT ON COLUMN nota_credito.id_nota_credito IS 'Identificação da NC, criada automaticamente';
-COMMENT ON COLUMN nota_credito.num_nota_credito IS 'Número da NC';
-COMMENT ON COLUMN nota_credito.id_ddo_descentralizacao IS 'Identificação da descentralização a qual a NC faz referência';
-COMMENT ON COLUMN nota_credito.valor IS 'Valor da NC';
-COMMENT ON COLUMN nota_credito.dt_nota_credito IS 'Data da NC';
+COMMENT ON COLUMN nota_credito.id_nota_credito IS 'Identificação da Nota de Crédito, criada automaticamente';
+COMMENT ON COLUMN nota_credito.num_nota_credito IS 'Número da Nota de Crédito';
+COMMENT ON COLUMN nota_credito.gnd IS 'Qual a GND desta Nota de Crédito';
+COMMENT ON COLUMN nota_credito.id_acao IS 'Identificação da Ação da JT a qual a Nota de Crédito faz referência';
+COMMENT ON COLUMN nota_credito.id_ug IS 'Identificação da Unidade Gestora a qual a Nota de Crédito faz referência';
+COMMENT ON COLUMN nota_credito.valor IS 'Valor da Nota de Crédito';
+COMMENT ON COLUMN nota_credito.dt_nota_credito IS 'Data da Nota de Crédito';
 COMMENT ON COLUMN nota_credito.id_usuario IS 'Usuário do sistema responsável pela última alteração';
 
 
@@ -455,22 +459,19 @@ ORDER BY acao.id_acao;
 CREATE VIEW notaCredito_dados AS
 SELECT
   nc.id_nota_credito,
-  nc.id_ddo_descentralizacao,
+  nc.gnd,
   nc.num_nota_credito,
   nc.valor,
   nc.dt_nota_credito,
-  acao.descricao as descricao_acao,
+  nc.id_acao,
   acao.nome as nome_acao,
+  nc.id_ug,
   ug.cod_ug as nome_ug
 FROM
   public.nota_credito nc,
-  public.ddo_descentralizacao descent,
-  public.ddo ddo,
   public.acao acao,
   public.unidade_gestora ug
 WHERE
-  ddo.id_ug = ug.id_ug AND
-  nc.id_ddo_descentralizacao = descent.id_ddo_descentralizacao AND
-  descent.id_ddo = ddo.id_ddo AND
-  ddo.id_acao = acao.id_acao
+  nc.id_ug = ug.id_ug AND
+  nc.id_acao = acao.id_acao
 ;
