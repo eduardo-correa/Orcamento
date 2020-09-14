@@ -5,6 +5,8 @@ import { NotaCreditoService } from "./../nota-credito.service";
 import { NC } from "./../nota-credito.model";
 import { Component, OnInit, Inject } from "@angular/core";
 import { MatDialogRef, MAT_DIALOG_DATA } from "@angular/material/dialog";
+import { Acao } from "../../acao/acao.model";
+import { AcaoService } from "../../acao/acao.service";
 
 @Component({
   selector: "cggov-nota-credito-form",
@@ -14,17 +16,24 @@ import { MatDialogRef, MAT_DIALOG_DATA } from "@angular/material/dialog";
 export class NotaCreditoFormComponent implements OnInit {
   formulario: FormGroup;
   ntCredito: NC = {
-    num_nota_credito: "",
-    id_ddo_descentralizacao: null,
+    num_nota_credito: null,
+    gnd: null,
+    id_acao: null,
+    id_ug: null,
     valor: null,
     dt_nota_credito: null,
+    nome_acao: null,
+    nome_ug: null,
   };
 
   ugs: Ug[] = null;
+  acoes: Acao[] = null;
+  gnds: number[] = [3, 4];
 
   constructor(
     private formBuilder: FormBuilder,
     private ugService: UgService,
+    private acaoService: AcaoService,
     private ncService: NotaCreditoService,
     public dialogRef: MatDialogRef<NotaCreditoFormComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any
@@ -33,10 +42,11 @@ export class NotaCreditoFormComponent implements OnInit {
   ngOnInit(): void {
     this.formulario = this.formBuilder.group({
       num_nota_credito: [null, Validators.required],
-      id_descentralizacao: [null, Validators.required],
+      gnd: [null, Validators.required],
+      id_acao: [null, Validators.required],
+      id_ug: [null, Validators.required],
       valor: [null, Validators.required],
       dt_nota_credito: [null, Validators.required],
-      ug_favorecida: [null, Validators.required],
     });
 
     if (this.data) {
@@ -44,15 +54,19 @@ export class NotaCreditoFormComponent implements OnInit {
         this.ntCredito = retorno[0];
         this.formulario.setValue({
           num_nota_credito: this.ntCredito.num_nota_credito,
-          id_descentralizacao: this.ntCredito.id_descentralizacao,
+          gnd: this.ntCredito.gnd,
+          id_acao: this.ntCredito.id_acao,
+          id_ug: this.ntCredito.id_ug,
           valor: this.ntCredito.valor,
           dt_nota_credito: this.ntCredito.dt_nota_credito,
-          ug_favorecida: this.ntCredito.ug_favorecida,
         });
       });
     }
     this.ugService.read().subscribe((retorno) => {
       this.ugs = retorno;
+    });
+    this.acaoService.read().subscribe((retorno) => {
+      this.acoes = retorno;
     });
   }
 
@@ -76,14 +90,13 @@ export class NotaCreditoFormComponent implements OnInit {
     this.ntCredito.num_nota_credito = this.formulario.get(
       "num_nota_credito"
     ).value;
-    this.ntCredito.id_descentralizacao = this.formulario.get(
-      "id_descentralizacao"
-    ).value;
+    this.ntCredito.gnd = this.formulario.get("gnd").value;
+    this.ntCredito.id_acao = this.formulario.get("id_acao").value;
+    this.ntCredito.id_ug = this.formulario.get("id_ug").value;
     this.ntCredito.valor = this.formulario.get("valor").value;
     this.ntCredito.dt_nota_credito = this.formulario.get(
       "dt_nota_credito"
     ).value;
-    this.ntCredito.ug_favorecida = this.formulario.get("ug_favorecida").value;
   }
 
   cancel(): void {

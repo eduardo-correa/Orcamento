@@ -1,14 +1,10 @@
 <mat-card class="titulo mat-elevation-z0">
   <div *ngIf="data; then updateTitle; else createTitle"></div>
   <ng-template #updateTitle>
-    <mat-card-title class="title">
-      Editar Nota de Crédito
-    </mat-card-title>
+    <mat-card-title class="title"> Editar Nota de Crédito </mat-card-title>
   </ng-template>
   <ng-template #createTitle>
-    <mat-card-title class="title">
-      Nova Nota de Crédito
-    </mat-card-title>
+    <mat-card-title class="title"> Nova Nota de Crédito </mat-card-title>
   </ng-template>
 </mat-card>
 
@@ -18,35 +14,35 @@
       <mat-grid-tile>
         <div class="controles-container">
           <mat-form-field>
-            <input
-              matInput
-              placeholder="Número da NC"
-              formControlName="num_nota_credito"
-            />
+            <mat-label>Ação da JT</mat-label>
+            <mat-select formControlName="id_acao">
+              <mat-option *ngFor="let acao of acoes" [value]="acao.id_acao">
+                {{ acao.nome }}
+              </mat-option>
+            </mat-select>
             <mat-error>Campo obrigatório</mat-error>
           </mat-form-field>
-          <mat-form-field>
-            <input
-              matInput
-              placeholder="Descentralização"
-              formControlName="id_descentralizacao"
-            />
-            <mat-error>Campo obrigatório</mat-error>
-          </mat-form-field>
-          <mat-form-field>
-            <input
-              matInput
-              placeholder="Valor"
-              formControlName="valor"
-              type="number"
-            />
-            <mat-error>Campo obrigatório</mat-error>
-          </mat-form-field>
-        </div>
-      </mat-grid-tile>
 
-      <mat-grid-tile>
-        <div class="controles-container">
+          <mat-form-field>
+            <mat-label>GND</mat-label>
+            <mat-select formControlName="gnd">
+              <mat-option *ngFor="let item of gnds" [value]="item">{{
+                item
+              }}</mat-option>
+            </mat-select>
+            <mat-error>Campo obrigatório</mat-error>
+          </mat-form-field>
+
+          <mat-form-field>
+            <mat-label>Demandante</mat-label>
+            <mat-select formControlName="id_ug">
+              <mat-option *ngFor="let ug of ugs" [value]="ug.id_ug">
+                {{ ug.cod_ug }}
+              </mat-option>
+            </mat-select>
+            <mat-error>Campo obrigatório</mat-error>
+          </mat-form-field>
+
           <mat-form-field>
             <mat-label>Data da aprovação</mat-label>
             <input
@@ -61,14 +57,27 @@
             ></mat-datepicker-toggle>
             <mat-datepicker #picker color="primary"></mat-datepicker>
           </mat-form-field>
+        </div>
+      </mat-grid-tile>
+
+      <mat-grid-tile>
+        <div class="controles-container">
+          <mat-form-field>
+            <input
+              matInput
+              placeholder="Número da NC"
+              formControlName="num_nota_credito"
+            />
+            <mat-error>Campo obrigatório</mat-error>
+          </mat-form-field>
 
           <mat-form-field>
-            <mat-label>Unidade Gestora</mat-label>
-            <mat-select formControlName="ug_favorecida">
-              <mat-option *ngFor="let ug of ugs" [value]="ug.id_ug">
-                {{ ug.cod_ug }}
-              </mat-option>
-            </mat-select>
+            <input
+              matInput
+              placeholder="Valor"
+              formControlName="valor"
+              type="number"
+            />
             <mat-error>Campo obrigatório</mat-error>
           </mat-form-field>
 
@@ -91,9 +100,7 @@
             >
               Salvar
             </button>
-            <button mat-raised-button mat-dialog-close>
-              Cancelar
-            </button>
+            <button mat-raised-button mat-dialog-close>Cancelar</button>
           </div>
         </div>
       </mat-grid-tile>

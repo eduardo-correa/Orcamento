@@ -38,7 +38,7 @@ module.exports = {
   async find(request, response) {
     const { id } = request.params;
 
-    const nt_credito = await connection("nota_credito")
+    const nt_credito = await connection("notacredito_dados")
       .where({
         id_nota_credito: id,
       })
