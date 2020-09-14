@@ -60,7 +60,12 @@
             <mat-datepicker #picker color="primary"></mat-datepicker>
           </mat-form-field>
           <div class="button-row">
-            <button mat-raised-button (click)="createItem()" color="primary">
+            <button
+              mat-raised-button
+              (click)="createItem()"
+              color="primary"
+              [disabled]="formulario.invalid"
+            >
               Adicionar
             </button>
 

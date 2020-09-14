@@ -1,3 +1,4 @@
+import { DdoService } from "./../../../ddo/ddo.service";
 import { FormGroup, FormBuilder, Validators } from "@angular/forms";
 import { DescentDdo } from "./../descent-ddo.model";
 import { DescentDdoService } from "./../descent-ddo.service";
@@ -38,6 +39,7 @@ export class DescentDdoCreateComponent implements OnInit {
     private dialogRef: MatDialogRef<DescentDdoCreateComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any,
     private descentDdoService: DescentDdoService,
+    private ddoService: DdoService,
     private formBuilder: FormBuilder
   ) {}
 
@@ -59,6 +61,11 @@ export class DescentDdoCreateComponent implements OnInit {
     this.formulario.get("vlr_aprovado").enable();
     this.formulario.get("reuniao_cgtic").enable();
     this.formulario.get("dt_aprov_cgtic").enable();
+    this.ddoService.readById(idDdo).subscribe((retorno) => {
+      this.formulario.patchValue({
+        vlr_aprovado: retorno[0].vlr_demandado,
+      });
+    });
   }
 
   preencherItem(): void {
