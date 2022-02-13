@@ -1,17 +1,19 @@
 version: '3.8'
 
 services:
-  postgres:
+  db:
     image: postgres:13
     restart: always
     environment:
-      - POSTGRES_DB=cggov_orc
-      - POSTGRES_USER=cggov
-      - POSTGRES_PASSWORD=sinfracggov
+      - POSTGRES_DB=orcamento
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
     ports:
       - '5432:5432'
     volumes:
       - pgdata:/var/lib/postgresql/data
+      - type: tmpfs
+        target: /dev/shm
       - ./scripts/criar_banco.sql:/docker-entrypoint-initdb.d/criar_banco.sql
       - ./scripts/povoar_banco.sql:/docker-entrypoint-initdb.d/povoar_banco.sql
 volumes:

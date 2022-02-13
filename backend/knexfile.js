@@ -5,9 +5,9 @@ module.exports = {
   development: {
     client: 'postgresql',
     connection: {
-      database: 'cggov_orc',
-      user:     'cggov',
-      password: 'sinfracggov'
+      database: 'orcamento',
+      user:     'postgres',
+      password: 'postgres'
     },
     pool: {
       min: 2,
